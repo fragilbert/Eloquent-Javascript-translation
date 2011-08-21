@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'regexp';</script>
-<div class="navigation"><a href="chapter9.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter11.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'regexp';</script>
+<div class="navigation">
+<a href="chapter9.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter11.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 10: </span>Regular Expressions</h1>
 <div class="block">
 <p>At various points in the previous chapters, we had to look for patterns in string values. In <a href="chapter4.html">chapter 4</a> we extracted date values from strings by writing out the precise positions at which the numbers that were part of the date could be found. Later, in <a href="chapter6.html">chapter 6</a>, we saw some particularly ugly pieces of code for finding certain types of characters in a string, for example the characters that had to be escaped in HTML output.</p>
@@ -54,7 +60,7 @@
 <p>Parts of a pattern can be allowed to be repeated a number of times. Putting an asterisk (<code>*</code>) after an element allows it to be repeated any number of times, including zero. A plus (<code>+</code>) does the same, but requires the pattern to occur at least one time. A question mark (<code>?</code>) makes an element 'optional' ― it can occur zero or one times.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">parenthesizedText</span> = <span class="string">/\(.*\)/</span>;
 <span class="variable">show</span>(<span class="string">&quot;Its (the sloth's) claws were gigantic!&quot;</span>.<span class="property">search</span>(<span class="variable">parenthesizedText</span>));</pre>
-<p>When necessary, braces can be used to be more precise about the amount of times an element may occur. A number between braces (<code>{4}</code>) gives the exact amount of times it must occur. Two numbers with a comma between them (<code>{3,10}</code>) indicate that the pattern must occur at least as often as the first number, and at most as often as the second one.  Similarly, <code>{2,}</code> means two or more occurrences, while <code>{,4}</code> means four or less.</p>
+<p>When necessary, braces can be used to be more precise about the amount of times an element may occur. A number between braces (<code>{4}</code>) gives the exact amount of times it must occur. Two numbers with a comma between them (<code>{3,10}</code>) indicate that the pattern must occur at least as often as the first number, and at most as often as the second one. Similarly, <code>{2,}</code> means two or more occurrences, while <code>{,4}</code> means four or less.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">datePattern</span> = <span class="string">/\d{1,2}\/\d\d?\/\d{4}/</span>;
 <span class="variable">show</span>(<span class="string">&quot;born 15/11/2003 (mother Spot): White Fang&quot;</span>.<span class="property">search</span>(<span class="variable">datePattern</span>));</pre>
 <p>The pieces <code>/\d{1,2}/</code> and <code>/\d\d?/</code> both express 'one or two digits'.</p>
@@ -173,15 +179,21 @@
 <span class="variable">show</span>(<span class="variable">digits</span>.<span class="property">test</span>(<span class="string">&quot;101&quot;</span>));</pre>
 </div><hr/><div class="block">
 <p>The most important thing to know about regular expressions is that they exist, and can greatly enhance the power of your string-mangling code. They are so cryptic that you'll probably have to look up the details on them the first ten times you want to make use of them. Persevere, and you will soon be off-handedly writing expressions that look like occult gibberish</p>
-<div class="illustration"><img src="img/xkcd_regular_expressions.png"/></div>
+<div class="illustration">
+<img src="img/xkcd_regular_expressions.png"/>
+</div>
 <p>(Comic by <a href="http://xkcd.com">Randall Munroe</a>.)</p>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>In this case, the backslashes were not really necessary, because
-the characters occur between <code>[</code> and <code>]</code>, but it is easier to just
-escape them anyway, so you won't have to think about it.
+<a name="footnote1"></a>
+In this case, the backslashes were not really necessary, because the characters occur between <code>[</code> and <code>]</code>, but it is easier to just escape them anyway, so you won't have to think about it.
 </li></ol>
-<div class="navigation"><a href="chapter9.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter11.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter9.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter11.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

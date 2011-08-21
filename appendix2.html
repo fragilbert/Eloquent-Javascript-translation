@@ -10,18 +10,25 @@
 <script type="text/javascript" src="js/before.js"> </script>
 <div class="content">
 <script type="text/javascript">var chapterTag = 'binaryheap';</script>
-<div class="navigation"><a href="appendix1.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | Next chapter &gt;&gt;</div>
+<div class="navigation">
+<a href="appendix1.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | Next chapter &gt;&gt;</div>
 <h1><span class="number">Appendix 2: </span>Binary Heaps</h1>
 <div class="block">
 <p>In <a href="chapter7.html">chapter 7</a>, the <a name="key1"></a>binary heap was introduced as a method to store a collection of objects in such a way that the smallest element can be quickly found. As promised, this appendix will explain the details behind this data structure.</p>
 <p>Consider again the problem we needed to solve. The A* algorithm created large amounts of small objects, and had to keep these in an 'open list'. It was also constantly removing the smallest element from this list. The simplest approach would be to just keep all the objects in an array, and search for the smallest one when we need it. But, unless we have a <em>lot</em> of time, this will not do. Finding the smallest element in an unsorted array requires going over the whole array, and checking each element.</p>
 <p>The next solution would be, of course, to sort our array. JavaScript arrays have a wonderful <a name="key2"></a><code>sort</code> method, which can be used to do the heavy work. Unfortunately, re-sorting a whole array every time an element is removed is more work than searching for a minimum value in an unsorted array. Some tricks can be used, such as, instead of re-sorting the whole array, just making sure new values are inserted in the right place so that the array, which was sorted before, stays sorted. This is coming closer to the approach a binary heap uses already, but inserting a value in the middle of an array requires moving all the elements after it one place up, which is still just too slow.</p>
 <p>Another approach is to not use an array at all, but to store the values in a set of interconnected objects. A simple form of this is to have every object hold one value and two (or less) links to other objects. There is one root object, holding the smallest value, which is used to access all the other objects. Links always point to objects holding greater values, so the whole structure looks something like this:</p>
-<div class="illustration"><img src="img/tree.png"/></div>
+<div class="illustration">
+<img src="img/tree.png"/>
+</div>
 <p>Such structures are usually called <a name="key3"></a>trees, because of the way they branch. Now, when you need the smallest element, you just take off the top element and rearrange the tree so that one of the top element's children ― the one with the lowest value ― becomes the new top. When inserting new elements, you 'descend' the tree until you find an element less than the new element, and insert it there. This takes a lot less searching than a sorted array does, but it has the disadvantage of creating a lot of objects, which also slows things down.</p>
 </div><hr/><div class="block">
 <p>A binary heap, then, does make use of a sorted array, but it is only partially sorted, much like the tree above. Instead of objects, the positions in the array are used to form a tree, as this picture tries to show:</p>
-<div class="illustration"><img src="img/heap.png"/></div>
+<div class="illustration">
+<img src="img/heap.png"/>
+</div>
 <p>Array element <code>1</code> is the root of the tree, array element <code>2</code> and <code>3</code>
 are its children, and in general array element <code>X</code> has children <code>X *
 2</code> and <code>X * 2 + 1</code>. You can see why this structure is called a 'heap'.
@@ -202,11 +209,15 @@ calculations to compensate.</p>
 </pre>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>The amount of comparisons and swaps that are needed ― in the worst
-case ― can be approached by taking the logarithm (base 2) of the
-amount of elements in the heap.
+<a name="footnote1"></a>
+The amount of comparisons and swaps that are needed ― in the worst case ― can be approached by taking the logarithm (base 2) of the amount of elements in the heap.
 </li></ol>
-<div class="navigation"><a href="appendix1.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | Next chapter &gt;&gt;</div>
+<div class="navigation">
+<a href="appendix1.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+Next chapter &gt;&gt;
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

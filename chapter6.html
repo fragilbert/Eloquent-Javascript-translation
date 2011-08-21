@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'fp';</script>
-<div class="navigation"><a href="chapter5.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter7.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'fp';</script>
+<div class="navigation">
+<a href="chapter5.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter7.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 6: </span>Functional Programming</h1>
 <div class="block">
 <p>As programs get bigger, they also become more complex and harder to understand. We all think ourselves pretty clever, of course, but we are mere human beings, and even a moderate amount of chaos tends to baffle us. And then it all goes downhill. Working on something you do not really understand is a bit like cutting random wires on those time-activated bombs they always have in movies. If you are lucky, you might get the right one ― especially if you are the hero of the movie and strike a suitably dramatic pose ― but there is always the possibility of blowing everything up.</p>
@@ -20,7 +26,7 @@
 <blockquote>Per person: one cup dried split peas, half a chopped onion, half a carrot, a celery stalk, and optionally ham.
 <br/><br/>
 Soak peas overnight, simmer them for two hours in four cups of water (per person), add vegetables and ham, and cook for ten more minutes.</blockquote>
-<p>This is shorter, but if you don't know how to soak peas you'll surely screw up and put them in too little water. But how to soak peas can be looked up, and that is the trick. If you assume a certain basic knowledge in the audience, you can talk in a language that deals with bigger concepts, and express things in a much shorter and clearer way.  This, more or less, is what abstraction is.</p>
+<p>This is shorter, but if you don't know how to soak peas you'll surely screw up and put them in too little water. But how to soak peas can be looked up, and that is the trick. If you assume a certain basic knowledge in the audience, you can talk in a language that deals with bigger concepts, and express things in a much shorter and clearer way. This, more or less, is what abstraction is.</p>
 <p>How is this far-fetched recipe story relevant to programming? Well, obviously, the recipe is the program. Furthermore, the basic knowledge that the cook is supposed to have corresponds to the functions and other constructs that are available to the programmer. If you remember the introduction of this book, things like <code>while</code> make it easier to build loops, and in <a href="chapter4.html">chapter 4</a> we wrote some simple functions in order to make other functions shorter and more straightforward. Such tools, some of them made available by the language itself, others built by the programmer, are used to reduce the amount of uninteresting details in the rest of the program, and thus make that program easier to work with.</p>
 </div><hr/><div class="block">
 <p><a name="key2"></a>Functional programming, which is the subject of this chapter, produces abstraction through clever ways of combining functions. A programmer armed with a repertoire of fundamental functions and, more importantly, the knowledge on how to use them, is much more effective than one who starts from scratch. Unfortunately, a standard JavaScript environment comes with deplorably few essential functions, so we have to write them ourselves or, which is often preferable, make use of somebody else's code (more on that in <a href="chapter9.html">chapter 9</a>).</p>
@@ -351,7 +357,7 @@ Combine everything into a single HTML document.
 <p>This is where we can try out the <code>map</code> function we saw earlier.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">paragraphs</span> = <span class="variable">map</span>(<span class="variable">processParagraph</span>,
                      <span class="variable">recluseFile</span>().<span class="property">split</span>(<span class="string">&quot;\n\n&quot;</span>));</pre>
-<p>And <em>bang</em>, we have an array of nicely categorised paragraph objects.  We are getting ahead of ourselves though, we forgot step 3 of the algorithm:</p>
+<p>And <em>bang</em>, we have an array of nicely categorised paragraph objects. We are getting ahead of ourselves though, we forgot step 3 of the algorithm:</p>
 <blockquote>Process the text of the paragraphs themselves, splitting them into normal parts, emphasised parts, and footnotes.</blockquote>
 <p>Which can be decomposed into:</p>
 <ol><li>
@@ -435,7 +441,7 @@ If there is anything left in the paragraph, start at 1 again.
   <span class="keyword">return</span> {<span class="property">type</span>: (<span class="localvariable">header</span> == <span class="atom">0</span> ? <span class="string">&quot;p&quot;</span> : <span class="string">&quot;h&quot;</span> + <span class="localvariable">header</span>),
           <span class="property">content</span>: <span class="variable">splitParagraph</span>(<span class="localvariable">paragraph</span>)};
 }</pre>
-<p>Mapping that over the array of paragraphs gives us an array of paragraph objects, which in turn contain arrays of fragment objects.  The next thing to do is to take out the footnotes, and put references to them in their place. Something like this:</p>
+<p>Mapping that over the array of paragraphs gives us an array of paragraph objects, which in turn contain arrays of fragment objects. The next thing to do is to take out the footnotes, and put references to them in their place. Something like this:</p>
 <pre class="code"><span class="keyword">function</span> <span class="variable">extractFootnotes</span>(<span class="variabledef">paragraphs</span>) {
   <span class="keyword">var</span> <span class="variabledef">footnotes</span> = [];
   <span class="keyword">var</span> <span class="variabledef">currentNote</span> = <span class="atom">0</span>;
@@ -559,7 +565,7 @@ If there is anything left in the paragraph, start at 1 again.
             <span class="variable">image</span>(<span class="string">&quot;img/sheep.png&quot;</span>)];
 <span class="keyword">var</span> <span class="variable">doc</span> = <span class="variable">htmlDoc</span>(<span class="string">&quot;The Test&quot;</span>, <span class="variable">body</span>);
 <span class="variable">viewHTML</span>(<span class="variable">renderHTML</span>(<span class="variable">doc</span>));</pre>
-<p>Now, I should probably warn you that this approach is not perfect.  What it actually renders is <a name="key12"></a>XML, which is similar to HTML, but more structured. In simple cases, such as the above, this does not cause any problems. However, there are some things, which are correct XML, but not proper HTML, and these might confuse a browser that is trying to show the documents we create. For example, if you have an empty <code>script</code> tag (used to put JavaScript into a page) in your document, browsers will not realise that it is empty and think that everything after it is JavaScript. (In this case, the problem can be fixed by putting a single space inside of the tag, so that it is no longer empty, and gets a proper closing tag.)</p>
+<p>Now, I should probably warn you that this approach is not perfect. What it actually renders is <a name="key12"></a>XML, which is similar to HTML, but more structured. In simple cases, such as the above, this does not cause any problems. However, there are some things, which are correct XML, but not proper HTML, and these might confuse a browser that is trying to show the documents we create. For example, if you have an empty <code>script</code> tag (used to put JavaScript into a page) in your document, browsers will not realise that it is empty and think that everything after it is JavaScript. (In this case, the problem can be fixed by putting a single space inside of the tag, so that it is no longer empty, and gets a proper closing tag.)</p>
 </div><hr/><div class="block">
 <a name="exercise5"></a>
 <div class="exercisenum">Ex. 6.5</div>
@@ -661,11 +667,18 @@ If there is anything left in the paragraph, start at 1 again.
 <p>Here we are defining new functions without using the <code>function</code> keyword at all. This can be useful when you need to create a simple function to give to, for example, <code>map</code> or <code>reduce</code>. However, when a function becomes more complex than these examples, it is usually shorter (not to mention more efficient) to just write it out with <code>function</code>.</p>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>Like this...
+<a name="footnote1"></a>
+Like this...
 </li></ol>
-<div class="navigation"><a href="chapter5.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter7.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter5.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter7.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
-© <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 
+© <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
+(<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 
 written March to July 2007, last modified on August 11 2011.
 </div>
 </div>

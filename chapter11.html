@@ -8,25 +8,31 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'web';</script>
-<div class="navigation"><a href="chapter10.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter12.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'web';</script>
+<div class="navigation">
+<a href="chapter10.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter12.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 11: </span>Web programming: A crash course</h1>
 <div class="block">
 <p>You are probably reading this in a web browser, so you are likely to be at least a little familiar with the World Wide Web. This chapter contains a quick, superficial introduction to the various elements that make the web work, and the way they relate to JavaScript. The three after this one are more practical, and show some of the ways JavaScript can be used to inspect and change a web-page.</p>
 </div><hr/><div class="block">
 <p>The Internet is, basically, just a computer network spanning most of the world. Computer networks make it possible for computers to send each other messages. The techniques that underlie networking are an interesting subject, but not the subject of this book. All you have to know is that, typically, one computer, which we will call the <a name="key1"></a>server, is waiting for other computers to start talking to it. Once another computer, the <a name="key2"></a>client, opens communications with this server, they will exchange whatever it is that needs to be exchanged using some specific language, a <a name="key3"></a>protocol.</p>
-<p>The Internet is used to carry messages for <em>many</em> different protocols.  There are protocols for chatting, protocols for file sharing, protocols used by malicious software to control the computer of the poor schmuck who installed it, and so on. The protocol that is of interest to us is that used by the World Wide Web. It is called <a name="key4"></a>HTTP, which stands for Hyper Text Transfer Protocol, and is used to retrieve web-pages and the files associated with them.</p>
+<p>The Internet is used to carry messages for <em>many</em> different protocols. There are protocols for chatting, protocols for file sharing, protocols used by malicious software to control the computer of the poor schmuck who installed it, and so on. The protocol that is of interest to us is that used by the World Wide Web. It is called <a name="key4"></a>HTTP, which stands for Hyper Text Transfer Protocol, and is used to retrieve web-pages and the files associated with them.</p>
 <p>In HTTP communication, the server is the computer on which the web-page is stored. The client is the computer, such as yours, which asks the server for a page, so that it can display it. Asking for a page like this is called an '<a name="key5"></a>HTTP request'.</p>
 </div><hr/><div class="block">
 <p>Web-pages and other files that are accessible though the Internet are identified by <a name="key6"></a>URLs, which is an abbreviation of Universal Resource Locators. A URL looks like this:</p>
 <pre class="preformatted">http://acc6.its.brooklyn.cuny.edu/~phalsall/texts/taote-v3.html</pre>
 <p>It is composed of three parts. The start, <code>http://</code>, indicates that this URL uses the HTTP protocol. There are some other protocols, such as FTP (File Transfer Protocol), which also make use of URLs. The next part, <code>acc6.its.brooklyn.cuny.edu</code>, names the server on which this page can be found. The end of the URL, <code>/~phalsal/texts/taote-v3.html</code>, names a specific file on this server.</p>
-<p>Most of the time, the World Wide Web is accessed using a browser.  After typing a URL or clicking a link, the browser makes the appropriate HTTP request to the appropriate server. If all goes well, the server responds by sending a file back to the browser, who shows it to the user in one way or another.</p>
+<p>Most of the time, the World Wide Web is accessed using a browser. After typing a URL or clicking a link, the browser makes the appropriate HTTP request to the appropriate server. If all goes well, the server responds by sending a file back to the browser, who shows it to the user in one way or another.</p>
 <p>When, as in the example, the retrieved file is an <a name="key7"></a>HTML document, it will be displayed as a web-page. We briefly discussed HTML in <a href="chapter6.html">chapter 6</a>, where we saw that it could refer to image files. In <a href="chapter9.html">chapter 9</a>, we found that HTML pages can also contain <code>&lt;script&gt;</code> tags to load files of JavaScript code. When showing an HTML document, a browser will fetch all these extra files from their servers, so it can add them to the document.</p>
 </div><hr/><div class="block">
 <p>Although a URL is supposed to point at a file, it is possible for a web-server to do something more complicated than just looking up a file and sending it to the client. ― It can process this file in some way first, or maybe there is no file at all, but only a program that, given an URL, has some way of generating the relevant document for it.</p>
 <p>Programs that transform or generate documents on a server are a popular way to make web-pages less static. When a file is just a file, it is always the same, but when there is a program that builds it every time it is requested, it could be made to look different for each person, based on things like whether this person has logged in or specified certain preferences. This can also make managing the content of web-pages much easier ― instead of adding a new HTML file whenever something new is put on a website, a new document is added to some central storage, and the program knows where to find it and how to show it to clients.</p>
-<p>This kind of web programming is called <a name="key8"></a>server-side programming. It affects the document before it is sent to the user. In some cases, it is also practical to have a program that runs <em>after</em> the page has been sent, when the user is looking at it. This is called <a name="key9"></a>client-side programming, because the program runs on the client computer.  Client-side web programming is what JavaScript was invented for.</p>
+<p>This kind of web programming is called <a name="key8"></a>server-side programming. It affects the document before it is sent to the user. In some cases, it is also practical to have a program that runs <em>after</em> the page has been sent, when the user is looking at it. This is called <a name="key9"></a>client-side programming, because the program runs on the client computer. Client-side web programming is what JavaScript was invented for.</p>
 </div><hr/><div class="block">
 <p>Running programs client-side has an inherent problem. You can never really know in advance what kinds of programs the page you are visiting is going to run. If it can send information from your computer to others, damage something, or infiltrate your system, surfing the web would be a rather hazardous activity.</p>
 <p>To solve this dilemma, browsers severely limit the things a JavaScript program may do. It is not allowed to look at your files, or to modify anything not related to the web-page it came with. Isolating a programming environment like this is called <a name="key10"></a>sand-boxing. Allowing the programs enough room to be useful, and at the same time restricting them enough to prevent them from doing harm is not an easy thing to do. Every few months, some JavaScript programmer comes up with a new way to circumvent the limitations and do something harmful or privacy-invading. The people responsible for the browsers respond by modifying their programs to make this trick impossible, and all is well again ― until the next problem is discovered.</p>
@@ -34,7 +40,7 @@
 <p>One of the first JavaScript tricks that became widely used is the <a name="key11"></a><a name="key12"></a><code>open</code> method of the <code>window</code> object. It takes a URL as an argument, and will open a new window showing that URL.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">perry</span> = <span class="variable">window</span>.<span class="property">open</span>(<span class="string">&quot;http://www.pbfcomics.com&quot;</span>);</pre>
 <p>Unless you turned off pop-up blocking in <a href="chapter6.html">chapter 6</a>, there's a chance that this new window is blocked. There is a good reason pop-up blockers exist. Web-programmers, especially those trying to get people to pay attention to advertisements, have abused the poor <code>window.open</code> method so much that by now, most users hate it with a passion. It has its place though, and in this book we will be using it to show some example pages. As a general rule, your scripts should not open any new windows unless the user asked for them.</p>
-<p>Note that, because <code>open</code> (just like <code>setTimeout</code> and company) is a method on the <code>window</code> object, the <code>window.</code> part can be left off.  When a function is called 'normally', it is called as a method on the top-level object, which is what <code>window</code> is. Personally, I think <code>open</code> sounds a bit generic, so I'll usually type <code>window.open</code>, which makes it clear that it is a window that is being opened.</p>
+<p>Note that, because <code>open</code> (just like <code>setTimeout</code> and company) is a method on the <code>window</code> object, the <code>window.</code> part can be left off. When a function is called 'normally', it is called as a method on the top-level object, which is what <code>window</code> is. Personally, I think <code>open</code> sounds a bit generic, so I'll usually type <code>window.open</code>, which makes it clear that it is a window that is being opened.</p>
 <p>The value returned by <code>window.open</code> is a new window. This is the global object for the script running in that window, and contains all the standard things like the <code>Object</code> constructor and the <code>Math</code> object. But if you try to look at them, most browsers will (probably) not let you...</p>
 <pre class="code invalid"><span class="variable">show</span>(<span class="variable">perry</span>.<span class="property">Math</span>);</pre>
 <p>This is part of the sand-boxing that I mentioned earlier. Pages opened by your browser might show information that is meant only for you, for example on sites where you logged in, and thus it would be bad if any random script could go and read them. The exception to this rule is pages opened on the same domain: When a script running on a page from <code>eloquentjavascript.net</code> opens another page on that same domain, it can do everything it wants to this page.</p>
@@ -102,7 +108,7 @@
 <pre class="code"><span class="keyword">var</span> <span class="variable">userForm</span> = <span class="variable">document</span>.<span class="property">forms</span>.<span class="property">userinfo</span>;
 <span class="variable">print</span>(<span class="variable">userForm</span>.<span class="property">method</span>);
 <span class="variable">print</span>(<span class="variable">userForm</span>.<span class="property">action</span>);</pre>
-<p>In this case, the properties <code>method</code> and <code>action</code> that were given to the HTML <code>form</code> tag are also present as properties of the JavaScript object. This is often the case, but not always: Some HTML properties are spelled differently in JavaScript, others are not present at all.  <a href="chapter12.html">Chapter 12</a> will show a way to get at all properties.</p>
+<p>In this case, the properties <code>method</code> and <code>action</code> that were given to the HTML <code>form</code> tag are also present as properties of the JavaScript object. This is often the case, but not always: Some HTML properties are spelled differently in JavaScript, others are not present at all. <a href="chapter12.html">Chapter 12</a> will show a way to get at all properties.</p>
 <p>The object for the <code>form</code> tag has a property <code>elements</code>, which refers to an object containing the fields of the form, by name.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">nameField</span> = <span class="variable">userForm</span>.<span class="property">elements</span>.<span class="property">name</span>;
 <span class="variable">nameField</span>.<span class="property">value</span> = <span class="string">&quot;Eugène&quot;</span>;</pre>
@@ -174,15 +180,18 @@ much died out, and are hardly used anymore.</p>
 <p>There is, however, a group of web-users that will still use a browser without JavaScript. A large part of this group consists of people using a regular graphical browser, but with JavaScript disabled for security reasons. Then there are people using textual browsers, or browsers for blind people. When working on a 'serious' site, it is often a good idea to start with a plain HTML system that works, and then add non-essential tricks and conveniences with JavaScript.</p>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>The value a character gets is decided by the ASCII standard, which
-assigns the numbers 0 to 127 to a set of letters and symbols used by
-the Latin alphabet. This standard is a precursor of the Unicode
-standard mentioned in <a href="chapter2.html">chapter 2</a>.
+<a name="footnote1"></a>
+The value a character gets is decided by the ASCII standard, which assigns the numbers 0 to 127 to a set of letters and symbols used by the Latin alphabet. This standard is a precursor of the Unicode standard mentioned in <a href="chapter2.html">chapter 2</a>.
 </li><li>
-<a name="footnote2"></a>Some browsers seem to hide the properties of the <code>navigator</code>
-object, in which case this will print nothing.
+<a name="footnote2"></a>
+Some browsers seem to hide the properties of the <code>navigator</code> object, in which case this will print nothing.
 </li></ol>
-<div class="navigation"><a href="chapter10.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter12.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter10.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter12.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

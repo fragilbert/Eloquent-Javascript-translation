@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'data';</script>
-<div class="navigation"><a href="chapter3.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter5.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'data';</script>
+<div class="navigation">
+<a href="chapter3.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter5.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 4: </span>Data structures: Objects and Arrays</h1>
 <div class="block">
 <p>This chapter will be devoted to solving a few simple problems. In the process, we will discuss two new types of values, arrays and objects, and look at some techniques related to them.</p>
@@ -90,7 +96,7 @@ Split this part into separate names by looking for commas.
 <span class="variable">thing</span>[<span class="string">&quot;5&quot;</span>] = <span class="atom">20</span>;
 <span class="variable">show</span>(<span class="variable">thing</span>[<span class="atom">2</span> + <span class="atom">3</span>]);
 <span class="keyword">delete</span> <span class="variable">thing</span>[<span class="string">&quot;gabba gabba&quot;</span>];</pre>
-<p>As you can see, the part between the brackets can be any expression.  It is converted to a string to determine the property name it refers to. One can even use variables to name properties:</p>
+<p>As you can see, the part between the brackets can be any expression. It is converted to a string to determine the property name it refers to. One can even use variables to name properties:</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">propertyName</span> = <span class="string">&quot;length&quot;</span>;
 <span class="keyword">var</span> <span class="variable">text</span> = <span class="string">&quot;mainline&quot;</span>;
 <span class="variable">show</span>(<span class="variable">text</span>[<span class="variable">propertyName</span>]);</pre>
@@ -106,7 +112,7 @@ Split this part into separate names by looking for commas.
 <a name="exercise1"></a>
 <div class="exercisenum">Ex. 4.1</div>
 <div class="exercise">
-<p>The solution for the cat problem talks about a 'set' of names. A <a name="key9"></a>set is a collection of values in which no value may occur more than once.  If names are strings, can you think of a way to use an object to represent a set of names?</p>
+<p>The solution for the cat problem talks about a 'set' of names. A <a name="key9"></a>set is a collection of values in which no value may occur more than once. If names are strings, can you think of a way to use an object to represent a set of names?</p>
 <p>Show how a name can be added to this set, how one can be removed, and how you can check whether a name occurs in it.</p>
 </div>
 <div class="solution">
@@ -132,7 +138,7 @@ Split this part into separate names by looking for commas.
 <span class="variable">object1</span>.<span class="property">value</span> = <span class="atom">15</span>;
 <span class="variable">show</span>(<span class="variable">object2</span>.<span class="property">value</span>);
 <span class="variable">show</span>(<span class="variable">object3</span>.<span class="property">value</span>);</pre>
-<p><code>object1</code> and <code>object2</code> are two variables grasping the <em>same</em> value.  There is only one actual object, which is why changing <code>object1</code> also changes the value of <code>object2</code>. The variable <code>object3</code> points to another object, which initially contains the same properties as <code>object1</code>, but lives a separate life.</p>
+<p><code>object1</code> and <code>object2</code> are two variables grasping the <em>same</em> value. There is only one actual object, which is why changing <code>object1</code> also changes the value of <code>object2</code>. The variable <code>object3</code> points to another object, which initially contains the same properties as <code>object1</code>, but lives a separate life.</p>
 <p>JavaScript's <a name="key11"></a><code>==</code> operator, when comparing objects, will only return <code>true</code> if both values given to it are the precise same value. Comparing different objects with identical contents will give <code>false</code>. This is useful in some situations, but unpractical in others.</p>
 </div><hr/><div class="block">
 <p>Object values can play a lot of different roles. Behaving like a set is only one of those. We will see a few other roles in this chapter, and <a href="chapter8.html">chapter 8</a> shows another important way of using objects.</p>
@@ -194,7 +200,7 @@ Split this part into separate names by looking for commas.
 <span class="variable">show</span>(<span class="variable">mack</span>);</pre>
 <p>The method <a name="key18"></a><code>push</code>, which is associated with arrays, can be used to add values to it. It could have been used in the last exercise, as an alternative to <code>result[i] = i</code>. Then there is <a name="key19"></a><code>pop</code>, the opposite of <code>push</code>: it takes off and returns the last value in the array. <a name="key20"></a><code>join</code> builds a single big string from an array of strings. The parameter it is given is pasted between the values in the array.</p>
 </div><hr/><div class="block">
-<p>Coming back to those cats, we now know that an array would be a good way to store the archive of e-mails. On this page, the function <code>retrieveMails</code> can be used to (magically) get hold of this array.  Going over them to process them one after another is no rocket science anymore either:</p>
+<p>Coming back to those cats, we now know that an array would be a good way to store the archive of e-mails. On this page, the function <code>retrieveMails</code> can be used to (magically) get hold of this array. Going over them to process them one after another is no rocket science anymore either:</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">mailArchive</span> = <span class="variable">retrieveMails</span>();
 
 <span class="keyword">for</span> (<span class="keyword">var</span> <span class="variable">i</span> = <span class="atom">0</span>; <span class="variable">i</span> &lt; <span class="variable">mailArchive</span>.<span class="property">length</span>; <span class="variable">i</span>++) {
@@ -621,7 +627,8 @@ Split this part into separate names by looking for commas.
 </div>
 </div><hr/><div class="block">
 <p>The previous chapter showed the functions <code>Math.max</code> and <code>Math.min</code>. With what you know now, you will notice that these are really the properties <code>max</code> and <code>min</code> of the object stored under the name <a name="key35"></a><code>Math</code>. This is another role that objects can play: A warehouse holding a number of related values.</p>
-<p>There are quite a lot of values inside <code>Math</code>, if they would all have been placed directly into the global environment they would, as it is called, pollute it. The more names have been taken, the more likely one is to accidentally overwrite the value of some variable. For example, it is not a far shot to want to name something <code>max</code>.</p> <p>Most languages will stop you, or at least warn you, when you are defining a variable with a name that is already taken. Not JavaScript.</p>
+<p>There are quite a lot of values inside <code>Math</code>, if they would all have been placed directly into the global environment they would, as it is called, pollute it. The more names have been taken, the more likely one is to accidentally overwrite the value of some variable. For example, it is not a far shot to want to name something <code>max</code>.</p>
+<p>Most languages will stop you, or at least warn you, when you are defining a variable with a name that is already taken. Not JavaScript.</p>
 <p>In any case, one can find a whole outfit of mathematical functions and constants inside <code>Math</code>. All the trigonometric functions are there ― <code>cos</code>, <code>sin</code>, <code>tan</code>, <code>acos</code>, <code>asin</code>, <code>atan</code>. π and e, which are written with all capital letters (<code>PI</code> and <code>E</code>), which was, at one time, a fashionable way to indicate something is a constant. <code>pow</code> is a good replacement for the <code>power</code> functions we have been writing, it also accepts negative and fractional exponents. <code>sqrt</code> takes square roots. <code>max</code> and <code>min</code> can give the maximum or minimum of two values. <a name="key36"></a><a name="key37"></a><a name="key38"></a><code>round</code>, <code>floor</code>, and <code>ceil</code> will round numbers to the closest whole number, the whole number below it, and the whole number above it respectively.</p>
 <p>There are a number of other values in <code>Math</code>, but this text is an introduction, not a <a name="key39"></a>reference. References are what you look at when you suspect something exists in the language, but need to find out what it is called or how it worked exactly. Unfortunately, there is no one comprehensive complete reference for JavaScript. This is mostly because its current form is the result of a chaotic process of different browsers adding different extensions at different times. The ECMA standard document that was mentioned in the introduction provides a solid documentation of the basic language, but is more or less unreadable. For things like the <code>Math</code> object and other elementary functionality, a rather good reference can be found <a href="http://www.webreference.com/javascript/reference/core_ref/contents.html">here</a>. The old documentation from Netscape, which can still be found at <a href="http://docs.sun.com/source/816-6408-10">Sun's website</a>, can also be helpful, but is outdated and not entirely correct anymore.</p>
 </div><hr/><div class="block">
@@ -653,10 +660,15 @@ Split this part into separate names by looking for commas.
 <span class="variable">winston</span>.<span class="property">mind</span> = <span class="string">&quot;rebellious&quot;</span>;</pre>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>There are a few subtle problems with this approach, which will be
-discussed and solved in <a href="chapter8.html">chapter 8</a>. For this chapter, it works well enough.
+<a name="footnote1"></a>
+There are a few subtle problems with this approach, which will be discussed and solved in <a href="chapter8.html">chapter 8</a>. For this chapter, it works well enough.
 </li></ol>
-<div class="navigation"><a href="chapter3.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter5.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter3.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter5.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

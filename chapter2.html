@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'basics';</script>
-<div class="navigation"><a href="chapter1.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter3.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'basics';</script>
+<div class="navigation">
+<a href="chapter1.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter3.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 2: </span>Basic JavaScript: values, variables, and control flow</h1>
 <div class="block">
 <p>Inside the computer's world, there is only data. That which is not data, does not exist. Although all data is in essence just a sequence of bits<a class="footref" href="#footnote1">1</a>, and is thus fundamentally alike, every piece of data plays its own role. In JavaScript's system, most of this data is neatly separated into things called <a name="key1"></a>values. Every value has a type, which determines the kind of role it can play. There are six basic types of values: Numbers, strings, booleans, objects, functions, and undefined values.</p>
@@ -36,11 +42,10 @@
 <p>Does the example mean 'add 4 and 100, and multiply the result by 11', or is the multiplication done before the adding? As you might have guessed, the multiplication happens first. But, as in mathematics, this can be changed by wrapping the addition in parentheses<a name="key6"></a>:</p>
 <pre class="code expression">(<span class="atom">100</span> + <span class="atom">4</span>) * <span class="atom">11</span></pre>
 <p>For subtraction, there is the <a name="key7"></a><code>-</code> operator, and division can be done with <a name="key8"></a><code>/</code>. When operators appear together without parentheses, the order in which they are applied is determined by the <a name="key9"></a>precedence of the operators. The first example shows that multiplication has a higher precedence than addition. Division and multiplication always come before subtraction and addition. When multiple operators with the same precedence appear next to each other (<code>1 - 1 + 1</code>) they are applied left-to-right.</p>
-<p>Try to figure out what value this produces, and then run it to see if
-you were correct...</p>
+<p>Try to figure out what value this produces, and then run it to see if you were correct...</p>
 <pre class="code expression"><span class="atom">115</span> * <span class="atom">4</span> - <span class="atom">4</span> + <span class="atom">88</span> / <span class="atom">2</span></pre>
 <p>These rules of precedence are not something you should worry about. When in doubt, just add parentheses.</p>
-<p>There is one more arithmetic operator which is probably less familiar to you. The <a name="key10"></a><code>%</code> symbol is used to represent the <a name="key11"></a>modulo operation.  <code>X</code> modulo <code>Y</code> is the remainder of dividing <code>X</code> by <code>Y</code>. For example <code>314 % 100</code> is <code>14</code>, <code>10 % 3</code> is <code>1</code>, and <code>144 % 12</code> is <code>0</code>. Modulo has the same precedence as multiplication and division.</p>
+<p>There is one more arithmetic operator which is probably less familiar to you. The <a name="key10"></a><code>%</code> symbol is used to represent the <a name="key11"></a>modulo operation. <code>X</code> modulo <code>Y</code> is the remainder of dividing <code>X</code> by <code>Y</code>. For example <code>314 % 100</code> is <code>14</code>, <code>10 % 3</code> is <code>1</code>, and <code>144 % 12</code> is <code>0</code>. Modulo has the same precedence as multiplication and division.</p>
 </div><hr/><div class="block">
 <p>The next data type is the <a name="key12"></a>string. Its use is not as evident from its name as with numbers, but it also fulfills a very basic role. Strings are used to represent text, the name supposedly derives from the fact that it strings together a bunch of characters. Strings are written by enclosing their content in quotes:</p>
 <pre class="code expression"><span class="string">&quot;Patch my boat with chewing gum.&quot;</span></pre>
@@ -82,7 +87,8 @@ value:</p>
 </div><hr/><div class="block">
 <a name="exercise1"></a>
 <div class="exercisenum">Ex. 2.1</div>
-<div class="exercise"><pre class="code expression">((<span class="atom">4</span> &gt;= <span class="atom">6</span>) || (<span class="string">&quot;grass&quot;</span> != <span class="string">&quot;green&quot;</span>)) &amp;&amp;
+<div class="exercise">
+<pre class="code expression">((<span class="atom">4</span> &gt;= <span class="atom">6</span>) || (<span class="string">&quot;grass&quot;</span> != <span class="string">&quot;green&quot;</span>)) &amp;&amp;
    !(((<span class="atom">12</span> * <span class="atom">2</span>) == <span class="atom">144</span>) &amp;&amp; <span class="atom">true</span>)</pre>
 <p>Is this true? For readability, there are a lot of unnecessary parentheses in there. This simple version means the same thing:</p>
 <pre class="code expression">(<span class="atom">4</span> &gt;= <span class="atom">6</span> || <span class="string">&quot;grass&quot;</span> != <span class="string">&quot;green&quot;</span>) &amp;&amp;
@@ -110,7 +116,8 @@ value:</p>
 <p>A variable always has a name, and it can point at a value, holding on to it. The statement above creates a variable called <code>caught</code> and uses it to grab hold of the number that is produced by multiplying <code>5</code> by <code>5</code>.</p>
 <p>After running the above program, you can type the word <code>caught</code> into the console, and it will retrieve the value <code>25</code> for you. The name of a variable is used to fetch its value. <code>caught + 1</code> also works. A variable name can be used as an expression, and thus can be part of bigger expressions.</p>
 <p>The word <a name="key37"></a><code>var</code> is used to create a new variable. After <code>var</code>, the name of the variable follows. Variable names can be almost every word, but they may not include spaces. Digits can be part of variable names, <code>catch22</code> is a valid name, but the name must not start with one. The characters '<code>$</code>' and '<code>_</code>' can be used in names as if they were letters, so <code>$_$</code> is a correct variable name.</p>
-<p>If you want the new variable to immediately capture a value, which is often the case, the <a name="key38"></a><code>=</code> operator can be used to give it the value of some expression.</p> <p>When a variable points at a value, that does not mean it is tied to that value forever. At any time, the <code>=</code> operator can be used on existing variables to yank them away from their current value and make them point to a new one.</p>
+<p>If you want the new variable to immediately capture a value, which is often the case, the <a name="key38"></a><code>=</code> operator can be used to give it the value of some expression.</p>
+<p>When a variable points at a value, that does not mean it is tied to that value forever. At any time, the <code>=</code> operator can be used on existing variables to yank them away from their current value and make them point to a new one.</p>
 <pre class="code"><span class="variable">caught</span> = <span class="atom">4</span> * <span class="atom">4</span>;</pre>
 </div><hr/><div class="block">
 <p>You should imagine variables as tentacles, rather than boxes. They do not <em>contain</em> values, they <em>grasp</em> them ― two variables can refer to the same value. Only the values that the program still has a hold on can be accessed by it. When you need to remember something, you grow a tentacle to hold on to it, or re-attach one of your existing tentacles to a new value: To remember the amount of dollars that Luigi still owes you, you could do...</p>
@@ -119,7 +126,7 @@ value:</p>
 <pre class="code"><span class="variable">luigiDebt</span> = <span class="variable">luigiDebt</span> - <span class="atom">35</span>;</pre>
 <p>The collection of variables and their values that exist at a given time is called the <a name="key39"></a>environment. When a program starts up, this environment is not empty. It always contains a number of standard variables. When your browser loads a page, it creates a new environment and attaches these standard values to it. The variables created and modified by programs on that page survive until the browser goes to a new page.</p>
 </div><hr/><div class="block">
-<p>A lot of the values provided by the standard environment have the type '<a name="key40"></a>function'. A function is a piece of program wrapped in a value.  Generally, this piece of program does something useful, which can be evoked using the function value that contains it. In a browser environment, the variable <a name="key41"></a><code>alert</code> holds a function that shows a little dialog window with a message. It is used like this:</p>
+<p>A lot of the values provided by the standard environment have the type '<a name="key40"></a>function'. A function is a piece of program wrapped in a value. Generally, this piece of program does something useful, which can be evoked using the function value that contains it. In a browser environment, the variable <a name="key41"></a><code>alert</code> holds a function that shows a little dialog window with a message. It is used like this:</p>
 <pre class="code"><span class="variable">alert</span>(<span class="string">&quot;Also, your hair is on fire.&quot;</span>);</pre>
 <p><a name="key42"></a>Executing the code in a function is called <a name="key43"></a>invoking or <a name="key44"></a>applying it. The notation for doing this uses parentheses. Every expression that produces a function value can be invoked by putting parentheses after it. The string value between the parentheses is given to the function, which uses it as the text to show in the dialog window. Values given to functions are called <a name="key45"></a>parameters or <a name="key46"></a>arguments. <code>alert</code> needs only one of them, but other functions might need a different number.</p>
 </div><hr/><div class="block">
@@ -135,7 +142,7 @@ value:</p>
 <pre class="code"><span class="variable">show</span>(<span class="string">&quot;N&quot;</span>);</pre>
 <p>The standard environment provided by browsers contains a few more functions for popping up windows. You can ask the user an OK/Cancel question using <a name="key52"></a><code>confirm</code>. This returns a boolean, <code>true</code> if the user presses 'OK', and <code>false</code> if he presses 'Cancel'.</p>
 <pre class="code"><span class="variable">show</span>(<span class="variable">confirm</span>(<span class="string">&quot;Shall we, then?&quot;</span>));</pre>
-<p><a name="key53"></a><code>prompt</code> can be used to ask an 'open' question. The first argument is the question, the second one is the text that the user starts with.  A line of text can be typed into the window, and the function will return this as a string.</p>
+<p><a name="key53"></a><code>prompt</code> can be used to ask an 'open' question. The first argument is the question, the second one is the text that the user starts with. A line of text can be typed into the window, and the function will return this as a string.</p>
 <pre class="code"><span class="variable">show</span>(<span class="variable">prompt</span>(<span class="string">&quot;Tell us everything you know.&quot;</span>, <span class="string">&quot;...&quot;</span>));</pre>
 </div><hr/><div class="block">
 <p>It is possible to give almost every variable in the environment a new value. This can be useful, but also dangerous. If you give <code>print</code> the value <code>8</code>, you won't be able to print things anymore. Fortunately, there is a big 'Reset' button on the console, which will reset the environment to its original state.</p>
@@ -175,7 +182,8 @@ value:</p>
 <p>If you are having trouble with this, try to see it in terms of the even-numbers example. The program must perform an action a certain amount of times. A counter variable with a <code>while</code> loop can be used for that. Instead of printing the counter, the program must multiply something by 2. This something should be another variable, in which the result value is built up.</p>
 <p>Don't worry if you don't quite see how this would work yet. Even if you perfectly understand all the techniques this chapter covers, it can be hard to apply them to a specific problem. Reading and writing code will help develop a feeling for this, so study the solution, and try the next exercise.</p>
 </div>
-<div class="solution"><pre class="code"><span class="keyword">var</span> <span class="variable">result</span> = <span class="atom">1</span>;
+<div class="solution">
+<pre class="code"><span class="keyword">var</span> <span class="variable">result</span> = <span class="atom">1</span>;
 <span class="keyword">var</span> <span class="variable">counter</span> = <span class="atom">0</span>;
 <span class="keyword">while</span> (<span class="variable">counter</span> &lt; <span class="atom">10</span>) {
   <span class="variable">result</span> = <span class="variable">result</span> * <span class="atom">2</span>;
@@ -193,7 +201,8 @@ value:</p>
 <p>Print out ten lines. On the first line there is one '#' character. On the second there are two. And so on.</p>
 <p>How does one get a string with X '#' characters in it? One way is to build it every time it is needed with an 'inner loop' ― a loop inside a loop. A simpler way is to reuse the string that the previous iteration of the loop used, and add one character to it.</p>
 </div>
-<div class="solution"><pre class="code"><span class="keyword">var</span> <span class="variable">line</span> = <span class="string">&quot;&quot;</span>;
+<div class="solution">
+<pre class="code"><span class="keyword">var</span> <span class="variable">line</span> = <span class="string">&quot;&quot;</span>;
 <span class="keyword">var</span> <span class="variable">counter</span> = <span class="atom">0</span>;
 <span class="keyword">while</span> (<span class="variable">counter</span> &lt; <span class="atom">10</span>) {
   <span class="variable">line</span> = <span class="variable">line</span> + <span class="string">&quot;#&quot;</span>;
@@ -202,7 +211,7 @@ value:</p>
 }</pre>
 </div>
 </div><hr/><div class="block">
-<p>You will have noticed the spaces I put in front of some statements.  These are not required: The computer will accept the program just fine without them. In fact, even the line breaks in programs are optional.  You could write them as a single long line if you felt like it. The role of the <a name="key62"></a>indentation inside blocks is to make the structure of the code clearer to a reader. Because new blocks can be opened inside other blocks, it can become hard to see where one block ends and another begins in a complex piece of code. When lines are indented, the visual shape of a program corresponds to the shape of the blocks inside it. I like to use two spaces for every open block, but tastes differ.</p>
+<p>You will have noticed the spaces I put in front of some statements. These are not required: The computer will accept the program just fine without them. In fact, even the line breaks in programs are optional. You could write them as a single long line if you felt like it. The role of the <a name="key62"></a>indentation inside blocks is to make the structure of the code clearer to a reader. Because new blocks can be opened inside other blocks, it can become hard to see where one block ends and another begins in a complex piece of code. When lines are indented, the visual shape of a program corresponds to the shape of the blocks inside it. I like to use two spaces for every open block, but tastes differ.</p>
 <p>On browsers other than Opera, the field in the console where you can type programs will help you by automatically adding these spaces. This may seem annoying at first, but when you write a lot of code it becomes a huge time-saver. Pressing the tab key will re-indent the line your cursor is currently on.</p>
 <p>In some cases, JavaScript allows you to omit the semicolon at the end of a statement. In other cases, it has to be there or strange things will happen. The rules for when it can be safely omitted are complex and weird. In this book, I won't leave out any semicolons, and I strongly urge you to do the same in your own programs.</p>
 </div><hr/><div class="block">
@@ -311,7 +320,8 @@ while with</pre>
 <p>Add a <code>while</code> and optionally a <code>break</code> to your solution for the previous exercise, so that it keeps repeating the question until a correct answer is given.</p>
 <p>Note that <code>while (true) ...</code> can be used to create a loop that does not end on its own account. This is a bit silly, you ask the program to loop as long as <code>true</code> is <code>true</code>, but it is a useful trick.</p>
 </div>
-<div class="solution"><pre class="code"><span class="keyword">var</span> <span class="variable">answer</span>;
+<div class="solution">
+<pre class="code"><span class="keyword">var</span> <span class="variable">answer</span>;
 <span class="keyword">while</span> (<span class="atom">true</span>) {
   <span class="variable">answer</span> = <span class="variable">prompt</span>(<span class="string">&quot;You! What is the value of 2 + 2?&quot;</span>, <span class="string">&quot;&quot;</span>);
   <span class="keyword">if</span> (<span class="variable">answer</span> == <span class="string">&quot;4&quot;</span>) {
@@ -386,7 +396,7 @@ while with</pre>
 <span class="variable">show</span>(<span class="string">&quot;5&quot;</span> * <span class="atom">5</span>);
 <span class="variable">show</span>(<span class="string">&quot;strawberry&quot;</span> * <span class="atom">5</span>);</pre>
 <p>The last statement prints <a name="key86"></a><code>NaN</code>, which is a special value. It stands for 'not a number', and is of type number (which might sound a little contradictory). In this case, it refers to the fact that a strawberry is not a number. All arithmetic operations on the value <code>NaN</code> result in <code>NaN</code>, which is why multiplying it by <code>5</code>, as in the example, still gives a <code>NaN</code> value. Also, and this can be disorienting at times, <code>NaN == NaN</code> equals <code>false</code>, checking whether a value is <code>NaN</code> can be done with the <a name="key87"></a><code>isNaN</code> function. <code>NaN</code> is another (the last) value that counts as <code>false</code> when converted to a boolean.</p>
-<p>These automatic conversions can be very convenient, but they are also rather weird and error prone. Even though <code>+</code> and <code>*</code> are both arithmetic operators, they behave completely different in the example.  In my own code, I use <code>+</code> to combine strings and non-strings a lot, but make it a point not to use <code>*</code> and the other numeric operators on string values. Converting a number to a string is always possible and straightforward, but converting a string to a number may not even work (as in the last line of the example). We can use <code>Number</code> to explicitly convert the string to a number, making it clear that we might run the risk of getting a <code>NaN</code> value.</p>
+<p>These automatic conversions can be very convenient, but they are also rather weird and error prone. Even though <code>+</code> and <code>*</code> are both arithmetic operators, they behave completely different in the example. In my own code, I use <code>+</code> to combine strings and non-strings a lot, but make it a point not to use <code>*</code> and the other numeric operators on string values. Converting a number to a string is always possible and straightforward, but converting a string to a number may not even work (as in the last line of the example). We can use <code>Number</code> to explicitly convert the string to a number, making it clear that we might run the risk of getting a <code>NaN</code> value.</p>
 <pre class="code"><span class="variable">show</span>(<span class="variable">Number</span>(<span class="string">&quot;5&quot;</span>) * <span class="atom">5</span>);</pre>
 </div><hr/><div class="block">
 <p>When we discussed the boolean operators <code>&amp;&amp;</code> and <code>||</code> earlier, I claimed they produced boolean values. This turns out to be a bit of an oversimplification. If you apply them to boolean values, they will indeed return booleans. But they can also be applied to other kinds of values, in which case they will return one of their arguments.</p>
@@ -400,18 +410,28 @@ while with</pre>
 <span class="atom">true</span> || <span class="variable">alert</span>(<span class="string">&quot;Not me.&quot;</span>);</pre>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>Bits are any kinds of two-valued things, usually described as <code>0</code>s and <code>1</code>s. Inside the computer, they take forms like a high or low electrical charge, a strong or weak signal, a shiny or dull spot on the surface of a CD.
+<a name="footnote1"></a>
+Bits are any kinds of two-valued things, usually described as <code>0</code>s and <code>1</code>s. Inside the computer, they take forms like a high or low electrical charge, a strong or weak signal, a shiny or dull spot on the surface of a CD.
 </li><li>
-<a name="footnote2"></a>If you were expecting something like <code>10010000</code> here ― good call, but read on. JavaScript's numbers are not stored as integers.
+<a name="footnote2"></a>
+If you were expecting something like <code>10010000</code> here ― good call, but read on. JavaScript's numbers are not stored as integers.
 </li><li>
-<a name="footnote3"></a>Actually, 53, because of a trick that can be used to get one bit for free. Look up the 'IEEE 754' format if you are curious about the details.
+<a name="footnote3"></a>
+Actually, 53, because of a trick that can be used to get one bit for free. Look up the 'IEEE 754' format if you are curious about the details.
 </li><li>
-<a name="footnote4"></a>When you type string values at the console, you'll notice that they will come back with the quotes and backslashes the way you typed them.  To get special characters to show properly, you can do <code>print(&quot;a\nb&quot;)</code> ― why this works, we will see in a moment.
+<a name="footnote4"></a>
+When you type string values at the console, you'll notice that they will come back with the quotes and backslashes the way you typed them. To get special characters to show properly, you can do <code>print(&quot;a\nb&quot;)</code> ― why this works, we will see in a moment.
 </li><li>
-<a name="footnote5"></a>The bit bucket is supposedly the place where old bits are kept. On some systems, the programmer has to manually empty it now and then.  Fortunately, JavaScript comes with a fully-automatic bit-recycling system.
+<a name="footnote5"></a>
+The bit bucket is supposedly the place where old bits are kept. On some systems, the programmer has to manually empty it now and then. Fortunately, JavaScript comes with a fully-automatic bit-recycling system.
 </li></ol>
 
-<div class="navigation"><a href="chapter1.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter3.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter1.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter3.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

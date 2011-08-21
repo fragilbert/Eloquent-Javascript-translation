@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'error';</script>
-<div class="navigation"><a href="chapter4.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter6.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'error';</script>
+<div class="navigation">
+<a href="chapter4.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter6.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 5: </span>Error Handling</h1>
 <div class="block">
 <p>Writing programs that work when everything goes as expected is a good start. Making your programs behave properly when encountering unexpected conditions is where it really gets challenging.</p>
@@ -63,7 +69,8 @@
 <span class="variable">show</span>(<span class="variable">lastElement</span>([<span class="atom">1</span>, <span class="atom">2</span>, <span class="atom">undefined</span>]));</pre>
 <p>So did the array have a last element? Looking at the value <code>lastElement</code> returns, it is impossible to say.</p>
 <p>The second issue with returning special values is that it can sometimes lead to a whole lot of clutter. If a piece of code calls <code>between</code> ten times, it has to check ten times whether <code>undefined</code> was returned. Also, if a function calls <code>between</code> but does not have a strategy to recover from a failure, it will have to check the return value of <code>between</code>, and if it is <code>undefined</code>, this function can then return <code>undefined</code> or some other special value to its caller, who in turn also checks for this value.</p>
-<p>Sometimes, when something strange occurs, it would be practical to just stop doing what we are doing and immediately jump back to a place that knows how to handle the problem.</p> <p>Well, we are in luck, a lot of programming languages provide such a thing. Usually, it is called <a name="key2"></a>exception handling.</p>
+<p>Sometimes, when something strange occurs, it would be practical to just stop doing what we are doing and immediately jump back to a place that knows how to handle the problem.</p>
+<p>Well, we are in luck, a lot of programming languages provide such a thing. Usually, it is called <a name="key2"></a>exception handling.</p>
 </div><hr/><div class="block">
 <p>The theory behind exception handling goes like this: It is possible for code to <a name="key3"></a>raise (or <a name="key4"></a>throw) an <a name="key5"></a>exception, which is a value. Raising an exception somewhat resembles a super-charged return from a function ― it does not just jump out of the current function, but also out of its callers, all the way up to the top-level call that started the current execution. This is called <a name="key6"></a>unwinding the stack. You may remember the <a name="key7"></a>stack of function calls that was mentioned in <a href="chapter3.html">chapter 3</a>. An exception zooms down this stack, throwing away all the call contexts it encounters.</p>
 <p>If they always zoomed right down to the base of the stack, exceptions would not be of much use, they would just provide a novel way to blow up your program. Fortunately, it is possible to set obstacles for exceptions along the stack. These '<a name="key8"></a>catch' the exception as it is zooming down, and can do something with it, after which the program continues running at the point where the exception was caught.</p>
@@ -160,7 +167,12 @@
 <p>But just returning <code>true</code> in case of an exception is not correct. Something else might be going wrong, so we first check whether the exception is the object <code>FoundSeven</code>, created specifically for this purpose. If it is not, this <code>catch</code> block does not know how to handle it, so it raises it again.</p>
 <p>This is a pattern that is also common when dealing with error conditions ― you have to make sure that your <code>catch</code> block only handles exceptions that it knows how to handle. Throwing string values, as some of the examples in this chapter do, is rarely a good idea, because it makes it hard to recognise the type of the exception. A better idea is to use unique values, such as the <code>FoundSeven</code> object, or to introduce a new type of objects, as described in <a href="chapter8.html">chapter 8</a>.</p>
 </div>
-<div class="navigation"><a href="chapter4.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter6.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter4.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter6.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

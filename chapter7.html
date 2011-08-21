@@ -8,14 +8,22 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'search';</script>
-<div class="navigation"><a href="chapter6.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter8.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'search';</script>
+<div class="navigation">
+<a href="chapter6.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter8.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 7: </span>Searching</h1>
 <div class="block">
-<p>This chapter does not introduce any new JavaScript-specific concepts.  Instead, we will go through the solution to two problems, discussing some interesting algorithms and techniques along the way. If this does not sound interesting to you, it is safe to skip to the next chapter.</p>
+<p>This chapter does not introduce any new JavaScript-specific concepts. Instead, we will go through the solution to two problems, discussing some interesting algorithms and techniques along the way. If this does not sound interesting to you, it is safe to skip to the next chapter.</p>
 </div><hr/><div class="block">
 <p>Let me introduce our first problem. Take a look at this map. It shows Hiva Oa, a small tropical island in the Pacific Ocean.</p>
-<div class="illustration"><img src="img/Hiva Oa.png"/></div>
+<div class="illustration">
+<img src="img/Hiva Oa.png"/>
+</div>
 <p>The grey lines are roads, and the numbers next to them are the lengths of these roads. Imagine we need a program that finds the shortest route between two points on Hiva Oa. How could we approach that? Think about this for a moment.</p>
 <p>No really. Don't just steamroll on to the next paragraph. Try to seriously think of some ways you could do this, and consider the issues you would come up against. When reading a technical book, it is way too easy to just zoom over the text, nod solemnly, and promptly forget what you have read. If you make a sincere effort to solve a problem, it becomes <em>your</em> problem, and its solution will be more meaningful.</p>
 </div><hr/><div class="block">
@@ -25,7 +33,7 @@
              {<span class="property">point1</span>: <span class="string">&quot;Point Kiukiu&quot;</span>, <span class="property">point2</span>: <span class="string">&quot;Mt Feani&quot;</span>, <span class="property">length</span>: <span class="atom">15</span>}
              <span class="comment">/* and so on */</span>];</pre>
 <p>However, it turns out that the program, as it is working out a route, will very often need to get a list of all the roads that start at a certain location, like a person standing on a crossroads will look at a signpost and read &quot;Hanaiapa: 19km, Mount Feani: 15km&quot;. It would be nice if this was easy (and quick) to do.</p>
-<p>With the representation given above, we have to sift through the whole list of roads, picking out the relevant ones, every time we want this signpost list. A better approach would be to store this list directly.  For example, use an object that associates place-names with signpost lists:</p>
+<p>With the representation given above, we have to sift through the whole list of roads, picking out the relevant ones, every time we want this signpost list. A better approach would be to store this list directly. For example, use an object that associates place-names with signpost lists:</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">roads</span> = {<span class="string">&quot;Point Kiukiu&quot;</span>: [{<span class="property">to</span>: <span class="string">&quot;Hanaiapa&quot;</span>, <span class="property">distance</span>: <span class="atom">19</span>},
                               {<span class="property">to</span>: <span class="string">&quot;Mt Feani&quot;</span>, <span class="property">distance</span>: <span class="atom">15</span>},
                               {<span class="property">to</span>: <span class="string">&quot;Taaoa&quot;</span>, <span class="property">distance</span>: <span class="atom">15</span>}],
@@ -152,7 +160,7 @@ In this set, find the shortest one that actually connects the start point to the
 }</pre>
 <p>Now, if the <code>action</code> function throws <code>Break</code>, <code>forEach</code> will absorb the exception and stop looping. The object stored in the variable <code>Break</code> is used purely as a thing to compare with. The only reason I gave it a <code>toString</code> property is that this might be useful to figure out what kind of strange value you are dealing with if you somehow end up with a <code>Break</code> exception outside of a <code>forEach</code>.</p>
 </div><hr/><div class="block">
-<p>Having a way to break out of <code>forEach</code> loops can be very useful, but in the case of the <code>member</code> function the result is still rather ugly, because you need to specifically store the result and later return it.  We could add yet another kind of exception, <code>Return</code>, which can be given a <code>value</code> property, and have <code>forEach</code> return this value when such an exception is thrown, but this would be terribly ad-hoc and messy. What we really need is a whole new higher-order function, called <a name="key5"></a><code>any</code> (or sometimes <code>some</code>). It looks like this:</p>
+<p>Having a way to break out of <code>forEach</code> loops can be very useful, but in the case of the <code>member</code> function the result is still rather ugly, because you need to specifically store the result and later return it. We could add yet another kind of exception, <code>Return</code>, which can be given a <code>value</code> property, and have <code>forEach</code> return this value when such an exception is thrown, but this would be terribly ad-hoc and messy. What we really need is a whole new higher-order function, called <a name="key5"></a><code>any</code> (or sometimes <code>some</code>). It looks like this:</p>
 <pre class="code"><span class="keyword">function</span> <span class="variable">any</span>(<span class="variabledef">test</span>, <span class="variabledef">array</span>) {
   <span class="keyword">for</span> (<span class="keyword">var</span> <span class="variabledef">i</span> = <span class="atom">0</span>; <span class="localvariable">i</span> &lt; <span class="localvariable">array</span>.<span class="property">length</span>; <span class="localvariable">i</span>++) {
     <span class="keyword">var</span> <span class="variabledef">found</span> = <span class="localvariable">test</span>(<span class="localvariable">array</span>[<span class="localvariable">i</span>]);
@@ -274,7 +282,7 @@ In this set, find the shortest one that actually connects the start point to the
 <span class="keyword">function</span> <span class="variable">shortestRoute</span>(<span class="variabledef">from</span>, <span class="variabledef">to</span>) {
   <span class="keyword">return</span> <span class="variable">minimise</span>(<span class="variable">getProperty</span>(<span class="string">&quot;length&quot;</span>), <span class="variable">possibleRoutes</span>(<span class="localvariable">from</span>, <span class="localvariable">to</span>));
 }</pre>
-<p>Unfortunately, it is three times longer than the other version. In programs where you need to minimise several things it might be a good idea to write the generic algorithm like this, so you can re-use it.  In most cases the first version is probably good enough.</p>
+<p>Unfortunately, it is three times longer than the other version. In programs where you need to minimise several things it might be a good idea to write the generic algorithm like this, so you can re-use it. In most cases the first version is probably good enough.</p>
 <p>Note the <a name="key11"></a><code>getProperty</code> function though, it is often useful when doing functional programming with objects.</p>
 </div>
 </div><hr/><div class="block">
@@ -285,13 +293,15 @@ In this set, find the shortest one that actually connects the start point to the
 <p>If you are paying attention, you may have noticed that it is not necessary to generate all routes all the way to the end. If we start comparing routes <em>while</em> we are building them, we can avoid building this big set of routes, and, as soon as we have found a single route to our destination, we can stop extending routes that are already longer than that route.</p>
 </div><hr/><div class="block">
 <p>To try this out, we will use a 20 by 20 grid as our map:</p>
-<div class="illustration"><img src="img/height.png"/></div>
+<div class="illustration">
+<img src="img/height.png"/>
+</div>
 <p>What you see here is an elevation map of a mountain landscape. The yellow spots are the peaks, and the blue spots the valleys. The area is divided into squares with a size of a hundred meters. We have at our disposal a function <code>heightAt</code>, which can give us the height, in meters, of any square on that map, where squares are represented by objects with <code>x</code> and <code>y</code> properties.</p>
 <pre class="code"><span class="variable">print</span>(<span class="variable">heightAt</span>({<span class="property">x</span>: <span class="atom">0</span>, <span class="property">y</span>: <span class="atom">0</span>}));
 <span class="variable">print</span>(<span class="variable">heightAt</span>({<span class="property">x</span>: <span class="atom">11</span>, <span class="property">y</span>: <span class="atom">18</span>}));</pre>
 </div><hr/><div class="block">
 <p>We want to cross this landscape, on foot, from the top left to the bottom right. A grid can be approached like a graph. Every square is a node, which is connected to the squares around it.</p>
-<p>We do not like wasting energy, so we would prefer to take the easiest route possible. Going uphill is heavier than going downhill, and going downhill is heavier than going level<a class="footref" href="#footnote2">2</a>. This function calculates the amount of 'weighted meters', between two adjacent squares, which represents how tired you get from walking (or climbing) between them.  Going uphill is counted as twice as heavy as going downhill.</p>
+<p>We do not like wasting energy, so we would prefer to take the easiest route possible. Going uphill is heavier than going downhill, and going downhill is heavier than going level<a class="footref" href="#footnote2">2</a>. This function calculates the amount of 'weighted meters', between two adjacent squares, which represents how tired you get from walking (or climbing) between them. Going uphill is counted as twice as heavy as going downhill.</p>
 <pre class="code"><span class="keyword">function</span> <span class="variable">weightedDistance</span>(<span class="variabledef">pointA</span>, <span class="variabledef">pointB</span>) {
   <span class="keyword">var</span> <span class="variabledef">heightDifference</span> = <span class="variable">heightAt</span>(<span class="localvariable">pointB</span>) - <span class="variable">heightAt</span>(<span class="localvariable">pointA</span>);
   <span class="keyword">var</span> <span class="variabledef">climbFactor</span> = (<span class="localvariable">heightDifference</span> &lt; <span class="atom">0</span> ? <span class="atom">1</span> : <span class="atom">2</span>);
@@ -345,13 +355,13 @@ In this set, find the shortest one that actually connects the start point to the
 <p>The fundamental problem is that there is too much room for going in the wrong direction. Unless we somehow manage to steer our exploration of paths towards the goal, a choice we make for continuing a given path is more likely to go in the wrong direction than in the right direction. If you keep generating paths like that, you end up with an enormous amount of paths, and even if one of them accidentally reaches the end point, you do not know whether that is the shortest path.</p>
 <p>So what you want to do is explore directions that are likely to get you to the end point first. On a grid like our map, you can get a rough estimate of how good a path is by checking how long it is and how close its end is to the end point. By adding path length and an estimate of the distance it still has to go, you can get a rough idea of which paths are promising. If you extend promising paths first, you are less likely to waste time on useless ones.</p>
 </div><hr/><div class="block">
-<p>But that still is not enough. If our map was of a perfectly flat plane, the path that looked promising would almost always be the best one, and we could use the above method to walk right to our goal. But we have valleys and hillsides blocking our paths, so it is hard to tell in advance which direction will be the most efficient path.  Because of this, we still end up having to explore way too many paths.</p>
+<p>But that still is not enough. If our map was of a perfectly flat plane, the path that looked promising would almost always be the best one, and we could use the above method to walk right to our goal. But we have valleys and hillsides blocking our paths, so it is hard to tell in advance which direction will be the most efficient path. Because of this, we still end up having to explore way too many paths.</p>
 <p>To correct this, we can make clever use of the fact that we are constantly exploring the most promising path first. Once we have determined that path A is the best way to get to point X, we can remember that. When, later on, path B also gets to point X, we know that it is not the best route, so we do not have to explore it further. This can prevent our program from building a lot of pointless paths.</p>
 </div><hr/><div class="block">
 <p>The algorithm, then, goes something like this...</p>
 <p>There are two pieces of data to keep track of. The first one is called the open list, it contains the partial routes that must still be explored. Each route has a score, which is calculated by adding its length to its estimated distance from the goal. This estimate must always be optimistic, it should never overestimate the distance. The second is a set of nodes that we have seen, together with the shortest partial route that got us there. This one we will call the reached list. We start by adding a route that contains only the starting node to the open list, and recording it in the reached list.</p>
 <p>Then, as long as there are any nodes in the open list, we take out the one that has the lowest (best) score, and find the ways in which it can be continued (by calling <code>possibleDirections</code>). For each of the nodes this returns, we create a new route by appending it to our original route, and adjusting the length of the route using <code>weightedDistance</code>. The endpoint of each of these new routes is then looked up in the reached list.</p>
-<p>If the node is not in the reached list yet, it means we have not seen it before, and we add the new route to the open list and record it in the reached list. If we <em>had</em> seen it before, we compare the score of the new route to the score of the route in the reached list. If the new route is shorter, we replace the existing route with the new one.  Otherwise, we discard the new route, since we have already seen a better way to get to that point.</p>
+<p>If the node is not in the reached list yet, it means we have not seen it before, and we add the new route to the open list and record it in the reached list. If we <em>had</em> seen it before, we compare the score of the new route to the score of the route in the reached list. If the new route is shorter, we replace the existing route with the new one. Otherwise, we discard the new route, since we have already seen a better way to get to that point.</p>
 <p>We continue doing this until the route we fetch from the open list ends at the goal node, in which case we have found our route, or until the open list is empty, in which case we have found out that there is no route. In our case the map contains no unsurmountable obstacles, so there is always a route.</p>
 <p>How do we know that the first full route that we get from the open list is also the shortest one? This is a result of the fact that we only look at a route when it has the lowest score. The score of a route is its actual length plus an <em>optimistic</em> estimate of the remaining length. This means that if a route has the lowest score in the open list, it is always the best route to its current endpoint ― it is impossible for another route to later find a better way to that point, because if it were better, its score would have been lower.</p>
 </div><hr/><div class="block">
@@ -371,7 +381,9 @@ In this set, find the shortest one that actually connects the start point to the
 <p><a href="appendix2.html">Appendix 2</a> discusses the implementation of this data structure, which is quite interesting. After you have read <a href="chapter8.html">chapter 8</a>, you might want to take a look at it.</p>
 </div><hr/><div class="block">
 <p>The need to squeeze out as much efficiency as we can has another effect. The Hiva Oa algorithm used arrays of locations to store routes, and copied them with the <code>concat</code> method when it extended them. This time, we can not afford to copy arrays, since we will be exploring lots and lots of routes. Instead, we use a 'chain' of objects to store a route. Every object in the chain has some properties, such as a point on the map, and the length of the route so far, and it also has a property that points at the previous object in the chain. Something like this:</p>
-<div class="illustration"><img src="img/objectchain.png"/></div>
+<div class="illustration">
+<img src="img/objectchain.png"/>
+</div>
 <p>Where the cyan circles are the relevant objects, and the lines represent properties ― the end with the dot points at the value of the property. Object <code>A</code> is the start of a route here. Object <code>B</code> is used to build a new route, which continues from <code>A</code>. It has a property, which we will call <code>from</code>, pointing at the route it is based on. When we need to reconstruct a route later, we can follow these properties to find all the points that the route passed. Note that object <code>B</code> is part of two routes, one that ends in <code>D</code> and one that ends in <code>E</code>. When there are a lot of routes, this can save us much storage space ― every new route only needs one new object for itself, the rest is shared with other routes that started the same way.</p>
 </div><hr/><div class="block">
 <a name="exercise5"></a>
@@ -388,7 +400,9 @@ In this set, find the shortest one that actually connects the start point to the
     <span class="keyword">return</span> (<span class="localvariable">dy</span> - <span class="localvariable">dx</span>) * <span class="atom">100</span> + <span class="localvariable">dx</span> * <span class="atom">141</span>;
 }</pre>
 <p>The strange formulae are used to decompose the path into a straight and a diagonal part. If you have a path like this...</p>
-<div class="illustration"><img src="img/diagonalpath.png"/></div>
+<div class="illustration">
+<img src="img/diagonalpath.png"/>
+</div>
 <p>... the path is <code>8</code> squares wide and <code>4</code> high, so you get <code>8 - 4 = 4</code> straight moves, and <code>4</code> diagonal ones.</p>
 <p>If you wrote a function that just computes the straight 'Pythagorean' distance between the points, that would also work. What we need is an optimistic estimate, and assuming you can go straight to the goal is certainly optimistic. However, the closer the estimate is to the real distance, the less useless paths our program has to try out.</p>
 </div>
@@ -480,7 +494,8 @@ In this set, find the shortest one that actually connects the start point to the
 }</pre>
 <p>First, it creates the data structures it needs, one open list and one reached list. <code>routeScore</code> is the scoring function given to the binary heap. Note how it stores its result in the route object, to prevent having to re-calculate it multiple times.</p>
 <p><code>addOpenRoute</code> is a convenience function that adds a new route to both the open list and the reached list. It is immediately used to add the start of the route. Note that route objects always have the properties <code>point</code>, which holds the point at the end of the route, and <code>length</code>, which holds the current length of the route. Routes which are more than one square long also have a <code>from</code> property, which points at their predecessors.</p>
-<p>The <code>while</code> loop, as was described in the algorithm, keeps taking the lowest-scoring route from the open list and checks whether this gets us to the goal point. If it does not, we must continue by expanding it. This is what the <code>forEach</code> takes care of. It looks up this new point in the reached list. If it is not found there, or the node found has a longer length that the new route, a new route object is created and added to the open list and reached list, and the existing route (if any) is removed from the open list.</p> <p>What if the route in <code>known</code> is not on the open list? It has to be, because routes are only removed from the open list when they have been found to be the most optimal route to their endpoint. If we try to remove a value from a binary heap that is not on it, it will throw an exception, so if my reasoning is wrong, we will probably see an exception when running the function.</p>
+<p>The <code>while</code> loop, as was described in the algorithm, keeps taking the lowest-scoring route from the open list and checks whether this gets us to the goal point. If it does not, we must continue by expanding it. This is what the <code>forEach</code> takes care of. It looks up this new point in the reached list. If it is not found there, or the node found has a longer length that the new route, a new route object is created and added to the open list and reached list, and the existing route (if any) is removed from the open list.</p>
+<p>What if the route in <code>known</code> is not on the open list? It has to be, because routes are only removed from the open list when they have been found to be the most optimal route to their endpoint. If we try to remove a value from a binary heap that is not on it, it will throw an exception, so if my reasoning is wrong, we will probably see an exception when running the function.</p>
 <p>When code gets complex enough to make you doubt certain things about it, it is a good idea to add some checks that raise exceptions when something goes wrong. That way, you know that there are no weird things happening 'silently', and when you break something, you immediately see what you broke.</p>
 </div><hr/><div class="block">
 <p>Note that this algorithm does not use recursion, but still manages to explore all those branches. The open list more or less takes over the role that the function call stack played in the recursive solution to the Hiva Oa problem ― it keeps track of the paths that still have to be explored. Every recursive algorithm can be rewritten in a non-recursive way by using a data structure to store the 'things that must still be done'.</p>
@@ -496,11 +511,18 @@ In this set, find the shortest one that actually connects the start point to the
 <p>Variations on the theme of <a name="key15"></a>searching an optimal route through a graph can be applied to many problems, many of which are not at all related to finding a physical path. For example, a program that needs to solve a puzzle of fitting a number of blocks into a limited space could do this by exploring the various 'paths' it gets by trying to put a certain block in a certain place. The paths that ends up with insufficient room for the last blocks are dead ends, and the path that manages to fit in all blocks is the solution.</p>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>Computers are deterministic machines: They always react in the same way to the input they receive, so they can not produce truly random values. Therefore, we have to make do with series of numbers that look random, but are in fact the result of some complicated deterministic computation.
+<a name="footnote1"></a>
+Computers are deterministic machines: They always react in the same way to the input they receive, so they can not produce truly random values. Therefore, we have to make do with series of numbers that look random, but are in fact the result of some complicated deterministic computation.
 </li><li>
-<a name="footnote2"></a>No really, it is.
+<a name="footnote2"></a>
+No really, it is.
 </li></ol>
-<div class="navigation"><a href="chapter6.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter8.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter6.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter8.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

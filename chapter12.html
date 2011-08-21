@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'dom';</script>
-<div class="navigation"><a href="chapter11.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter13.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'dom';</script>
+<div class="navigation">
+<a href="chapter11.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter13.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 12: </span>The Document-Object Model</h1>
 <div class="block">
 <p>In <a href="chapter11.html">chapter 11</a> we saw JavaScript objects referring to <code>form</code> and <code>input</code> tags from the HTML document. Such objects are part of a structure called the <a name="key1"></a>Document-Object Model (<a name="key2"></a>DOM). Every tag of the document is represented in this model, and can be looked up and interacted with.</p>
@@ -70,7 +76,7 @@
 </div><hr/><div class="block">
 <p>Nodes, in fact, already have something similar to <code>asHTML</code>. Their <a name="key14"></a><code>innerHTML</code> property can be used to retrieve the HTML text <em>inside</em> of the node, without the tags for the node itself. Some browsers also support <code>outerHTML</code>, which does include the node itself, but not all of them.</p>
 <pre class="code"><span class="variable">print</span>(<span class="variable">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span>);</pre>
-<p>Some of these properties can also be modified. Setting the <code>innerHTML</code> of a node or the <code>nodeValue</code> of a text-node will change its content.  Note that, in the first case, the given string is interpreted as HTML, while in the second case it is interpreted as plain text.</p>
+<p>Some of these properties can also be modified. Setting the <code>innerHTML</code> of a node or the <code>nodeValue</code> of a text-node will change its content. Note that, in the first case, the given string is interpreted as HTML, while in the second case it is interpreted as plain text.</p>
 <pre class="code"><span class="variable">document</span>.<span class="property">body</span>.<span class="property">firstChild</span>.<span class="property">firstChild</span>.<span class="property">nodeValue</span> =
   <span class="string">&quot;Chapter 1: The deep significance of the bottle&quot;</span>;</pre>
 <p>Or ...</p>
@@ -268,7 +274,12 @@
 </div><hr/><div class="block">
 <p>If you've followed through with all the examples in this chapter, and maybe did a few extra things by yourself, you will have completely mutilated the poor little document that we started with. Now let me moralise for a moment and tell you that you do not want to do this to real pages. The temptation to add all kinds of moving bling-bling will at times be strong. Resist it, or your pages shall surely become unreadable or even, if you go far enough, induce the occasional seizure.</p>
 </div>
-<div class="navigation"><a href="chapter11.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter13.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter11.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter13.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

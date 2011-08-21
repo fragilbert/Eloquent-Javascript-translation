@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'modularity';</script>
-<div class="navigation"><a href="chapter8.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter10.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'modularity';</script>
+<div class="navigation">
+<a href="chapter8.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter10.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 9: </span>Modularity</h1>
 <div class="block">
 <p>This chapter deals with the process of organising programs. In small programs, organisation rarely becomes a problem. As a program grows, however, it can reach a size where its structure and interpretation become hard to keep track of. Easily enough, such a program starts to look like a bowl of spaghetti, an amorphous mass in which everything seems to be connected to everything else.</p>
@@ -127,7 +133,7 @@ And finally the <code>Terrarium</code> module, which depends on <code>ObjectTool
 })();
 
 <span class="variable">show</span>(<span class="variable">getDayNumber</span>(<span class="string">&quot;Wednesday&quot;</span>));</pre>
-<p>I do not recommend writing modules like this right from the start.  While you are still working on a piece of code, it is easier to just use the simple approach we have used so far, and put everything at top level. That way, you can inspect the module's internal values in your browser, and test them out. Once a module is more or less finished, it is not difficult to wrap it in a function.</p>
+<p>I do not recommend writing modules like this right from the start. While you are still working on a piece of code, it is easier to just use the simple approach we have used so far, and put everything at top level. That way, you can inspect the module's internal values in your browser, and test them out. Once a module is more or less finished, it is not difficult to wrap it in a function.</p>
 </div><hr/><div class="block">
 <p>There are cases where a module will export so many variables that it is a bad idea to put them all into the top-level environment. In cases like this, you can do what the standard <code>Math</code> object does, and represent the module as a single object whose properties are the functions and values it exports. For example...</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">HTML</span> = {
@@ -190,10 +196,15 @@ And finally the <code>Terrarium</code> module, which depends on <code>ObjectTool
 </div><hr/><div class="block">
 <p>A module or group of modules that can be useful in more than one program is usually called a <a name="key7"></a>library. For many programming languages, there is a huge set of quality libraries available. This means programmers do not have to start from scratch all the time, which can make them a lot more productive. For JavaScript, unfortunately, the amount of available libraries is not very large.</p>
 <p>But recently this seems to be improving. There are a number of good libraries with 'basic' tools, things like <code>map</code> and <code>clone</code>. Other languages tend to provide such obviously useful things as built-in standard features, but with JavaScript you'll have to either build a collection of them for yourself or use a library. Using a library is recommended: It is less work, and the code in a library has usually been tested more thoroughly than the things you wrote yourself.</p>
-<p>Covering these basics, there are (among others) the 'lightweight' libraries <a href="http://www.prototypejs.org/">prototype</a>, <a href="http://mootools.net">mootools</a>, <a href="http://jquery.com">jQuery</a>, and <a href="http://mochikit.com">MochiKit</a>. There are also some larger 'frameworks' available, which do a lot more than just provide a set of basic tools.  <a href="http://developer.yahoo.com/yui/">YUI</a> (by Yahoo), and <a href="http://dojotoolkit.org/">Dojo</a> seem to be the most popular ones in that genre. All of these can be downloaded and used free of charge. My personal favourite is MochiKit, but this is mostly a matter of taste. When you get serious about JavaScript programming, it is a good idea to quickly glance through the documentation of each of these, to get a general idea about the way they work and the things they provide.</p>
+<p>Covering these basics, there are (among others) the 'lightweight' libraries <a href="http://www.prototypejs.org/">prototype</a>, <a href="http://mootools.net">mootools</a>, <a href="http://jquery.com">jQuery</a>, and <a href="http://mochikit.com">MochiKit</a>. There are also some larger 'frameworks' available, which do a lot more than just provide a set of basic tools. <a href="http://developer.yahoo.com/yui/">YUI</a> (by Yahoo), and <a href="http://dojotoolkit.org/">Dojo</a> seem to be the most popular ones in that genre. All of these can be downloaded and used free of charge. My personal favourite is MochiKit, but this is mostly a matter of taste. When you get serious about JavaScript programming, it is a good idea to quickly glance through the documentation of each of these, to get a general idea about the way they work and the things they provide.</p>
 <p>The fact that a basic toolkit is almost indispensable for any non-trivial JavaScript programs, combined with the fact that there are so many different toolkits, causes a bit of a dilemma for library writers. You either have to make your library depend on one of the toolkits, or write the basic tools yourself and include them with the library. The first option makes the library hard to use for people who are using a different toolkit, and the second option adds a lot of non-essential code to the library. This dilemma might be one of the reasons why there are relatively few good, widely used JavaScript libraries. It is possible that, in the future, new versions of ECMAScript and changes in browsers will make toolkits less necessary, and thus (partially) solve this problem.</p>
 </div>
-<div class="navigation"><a href="chapter8.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter10.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter8.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter10.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

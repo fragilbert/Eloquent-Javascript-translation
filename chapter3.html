@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'functions';</script>
-<div class="navigation"><a href="chapter2.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter4.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'functions';</script>
+<div class="navigation">
+<a href="chapter2.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter4.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 3: </span>Functions</h1>
 <div class="block">
 <p>A program often needs to do the same thing in different places. Repeating all the necessary statements every time is tedious and error-prone. It would be better to put them in one place, and have the program take a detour through there whenever necessary. This is what <a name="key1"></a>functions were invented for: They are canned code that a program can go through whenever it wants. Putting a string on the screen requires quite a few statements, but when we have a <code>print</code> function we can just write <code>print(&quot;Aleph&quot;)</code> and be done with it.</p>
@@ -24,7 +30,7 @@
 
 <span class="variable">show</span>(<span class="variable">add</span>(<span class="atom">2</span>, <span class="atom">2</span>));</pre>
 <p><code>add</code> is the name of the function. <code>a</code> and <code>b</code> are the names of the two arguments. <code>return a + b;</code> is the body of the function.</p>
-<p>The keyword <a name="key3"></a><code>function</code> is always used when creating a new function.  When it is followed by a variable name, the resulting function will be stored under this name. After the name comes a list of <a name="key4"></a>argument names, and then finally the <a name="key5"></a>body of the function. Unlike those around the body of <code>while</code> loops or <code>if</code> statements, the braces around a function body are obligatory<a class="footref" href="#footnote1">1</a>.</p>
+<p>The keyword <a name="key3"></a><code>function</code> is always used when creating a new function. When it is followed by a variable name, the resulting function will be stored under this name. After the name comes a list of <a name="key4"></a>argument names, and then finally the <a name="key5"></a>body of the function. Unlike those around the body of <code>while</code> loops or <code>if</code> statements, the braces around a function body are obligatory<a class="footref" href="#footnote1">1</a>.</p>
 <p>The keyword <a name="key6"></a><code>return</code>, followed by an expression, is used to determine the value the function returns. When control comes across a <code>return</code> statement, it immediately jumps out of the current function and gives the returned value to the code that called the function. A <code>return</code> statement without an expression after it will cause the function to return <code>undefined</code>.</p>
 <p>A body can, of course, have more than one statement in it. Here is a function for computing powers (with positive, integer exponents):</p>
 <pre class="code"><span class="keyword">function</span> <span class="variable">power</span>(<span class="variabledef">base</span>, <span class="variabledef">exponent</span>) {
@@ -36,8 +42,8 @@
 
 <span class="variable">show</span>(<span class="variable">power</span>(<span class="atom">2</span>, <span class="atom">10</span>));</pre>
 <p>If you solved <a href="chapter2.html#exercise2">exercise 2.2</a>, this technique for computing a power should look familiar.</p>
-<p>Creating a variable (<code>result</code>) and updating it are side effects.  Didn't I just say pure functions had no side effects?</p>
-<p>A variable created inside a function exists only inside the function.  This is fortunate, or a programmer would have to come up with a different name for every variable he needs throughout a program.  Because <code>result</code> only exists inside <code>power</code>, the changes to it only last until the function returns, and from the perspective of code that calls it there are no side effects.</p>
+<p>Creating a variable (<code>result</code>) and updating it are side effects. Didn't I just say pure functions had no side effects?</p>
+<p>A variable created inside a function exists only inside the function. This is fortunate, or a programmer would have to come up with a different name for every variable he needs throughout a program. Because <code>result</code> only exists inside <code>power</code>, the changes to it only last until the function returns, and from the perspective of code that calls it there are no side effects.</p>
 </div><hr/><div class="block">
 <a name="exercise1"></a>
 <div class="exercisenum">Ex. 3.1</div>
@@ -55,8 +61,8 @@
 </div>
 </div><hr/><div class="block">
 <p>Pure functions have two very nice properties. They are easy to think about, and they are easy to re-use.</p>
-<p>If a function is pure, a call to it can be seen as a thing in itself.  When you are not sure that it is working correctly, you can test it by calling it directly from the console, which is simple because it does not depend on any context<a class="footref" href="#footnote2">2</a>. It is easy to make these tests automatic ― to write a program that tests a specific function. Non-pure functions might return different values based on all kinds of factors, and have side effects that might be hard to test and think about.</p>
-<p>Because pure functions are self-sufficient, they are likely to be useful and relevant in a wider range of situations than non-pure ones.  Take <code>show</code>, for example. This function's usefulness depends on the presence of a special place on the screen for printing output. If that place is not there, the function is useless. We can imagine a related function, let's call it <code>format</code>, that takes a value as an argument and returns a string that represents this value. This function is useful in more situations than <code>show</code>.</p>
+<p>If a function is pure, a call to it can be seen as a thing in itself. When you are not sure that it is working correctly, you can test it by calling it directly from the console, which is simple because it does not depend on any context<a class="footref" href="#footnote2">2</a>. It is easy to make these tests automatic ― to write a program that tests a specific function. Non-pure functions might return different values based on all kinds of factors, and have side effects that might be hard to test and think about.</p>
+<p>Because pure functions are self-sufficient, they are likely to be useful and relevant in a wider range of situations than non-pure ones. Take <code>show</code>, for example. This function's usefulness depends on the presence of a special place on the screen for printing output. If that place is not there, the function is useless. We can imagine a related function, let's call it <code>format</code>, that takes a value as an argument and returns a string that represents this value. This function is useful in more situations than <code>show</code>.</p>
 <p>Of course, <code>format</code> does not solve the same problem as <code>show</code>, and no pure function is going to be able to solve that problem, because it requires a side effect. In many cases, non-pure functions are precisely what you need. In other cases, a problem can be solved with a pure function but the non-pure variant is much more convenient or efficient.</p>
 <p>Thus, when something can easily be expressed as a pure function, write it that way. But never feel dirty for writing non-pure functions.</p>
 </div><hr/><div class="block">
@@ -122,7 +128,7 @@
 
 <span class="keyword">var</span> <span class="variable">child</span> = <span class="variable">parentFunction</span>();
 <span class="variable">child</span>();</pre>
-<p><code>parentFunction</code> <em>returns</em> its internal function, and the code at the bottom calls this function. Even though <code>parentFunction</code> has finished executing at this point, the local environment where <code>variable</code> has the value <code>&quot;local&quot;</code> still exists, and <code>childFunction</code> still uses it.  This phenomenon is called <a name="key12"></a>closure.</p>
+<p><code>parentFunction</code> <em>returns</em> its internal function, and the code at the bottom calls this function. Even though <code>parentFunction</code> has finished executing at this point, the local environment where <code>variable</code> has the value <code>&quot;local&quot;</code> still exists, and <code>childFunction</code> still uses it. This phenomenon is called <a name="key12"></a>closure.</p>
 </div><hr/><div class="block">
 <p>Apart from making it very easy to quickly see in which part of a program a variable will be available by looking at the shape of the program text, lexical scoping also allows us to 'synthesise' functions. By using some of the variables from an enclosing function, an inner function can be made to do different things. Imagine we need a few different but similar functions, one that adds 2 to its argument, one that adds 5, and so on.</p>
 <pre class="code"><span class="keyword">function</span> <span class="variable">makeAddFunction</span>(<span class="variabledef">amount</span>) {
@@ -164,7 +170,7 @@
 <span class="variable">print</span>(<span class="variable">chicken</span>() + <span class="string">&quot; came first.&quot;</span>);</pre>
 <p>In addition to demonstrating a very interesting way of writing a broken program, this example shows that a function does not have to call itself directly to be recursive. If it calls another function which (directly or indirectly) calls the first function again, it is still recursive.</p>
 </div><hr/><div class="block">
-<p>Recursion is not always just a less-efficient alternative to looping.  Some problems are much easier to solve with recursion than with loops.  Most often these are problems that require exploring or processing several 'branches', each of which might branch out again into more branches.</p>
+<p>Recursion is not always just a less-efficient alternative to looping. Some problems are much easier to solve with recursion than with loops. Most often these are problems that require exploring or processing several 'branches', each of which might branch out again into more branches.</p>
 <p>Consider this puzzle: By starting from the number 1 and repeatedly either adding 5 or multiplying by 3, an infinite amount of new numbers can be produced. How would you write a function that, given a number, tries to find a sequence of additions and multiplications that produce that number?</p>
 <p>For example, the number 13 could be reached by first multiplying 1 by 3, and then adding 5 twice. The number 15 can not be reached at all.</p>
 <p>Here is the solution:</p>
@@ -219,7 +225,8 @@
 <div class="exercise">
 <p>Write a function <code>greaterThan</code>, which takes one argument, a number, and returns a function that represents a test. When this returned function is called with a single number as argument, it returns a boolean: <code>true</code> if the given number is greater than the number that was used to create the test function, and <code>false</code> otherwise.</p>
 </div>
-<div class="solution"><pre class="code"><span class="keyword">function</span> <span class="variable">greaterThan</span>(<span class="variabledef">x</span>) {
+<div class="solution">
+<pre class="code"><span class="keyword">function</span> <span class="variable">greaterThan</span>(<span class="variabledef">x</span>) {
   <span class="keyword">return</span> <span class="keyword">function</span>(<span class="variabledef">y</span>) {
     <span class="keyword">return</span> <span class="localvariable">y</span> &gt; <span class="localvariable">x</span>;
   };
@@ -231,22 +238,27 @@
 </div><hr/><div class="block">
 <p>Try the following:</p>
 <pre class="code"><span class="variable">alert</span>(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;Good Evening&quot;</span>, <span class="string">&quot;How do you do?&quot;</span>, <span class="string">&quot;Goodbye&quot;</span>);</pre>
-<p>The function <code>alert</code> officially only accepts one argument. Yet when
-you call it like this, the computer does not complain at all, but just ignores the other arguments.</p>
+<p>The function <code>alert</code> officially only accepts one argument. Yet when you call it like this, the computer does not complain at all, but just ignores the other arguments.</p>
 <pre class="code"><span class="variable">show</span>();</pre>
-<p>You can, apparently, even get away with passing too few arguments.  When an argument is not passed, its value inside the function is <code>undefined</code>.</p>
+<p>You can, apparently, even get away with passing too few arguments. When an argument is not passed, its value inside the function is <code>undefined</code>.</p>
 <p>In the next chapter, we will see a way in which a function body can get at the exact list of arguments that were passed to it. This can be useful, as it makes it possible to have a function accept any number of arguments. <code>print</code> makes use of this:</p>
 <pre class="code"><span class="variable">print</span>(<span class="string">&quot;R&quot;</span>, <span class="atom">2</span>, <span class="string">&quot;D&quot;</span>, <span class="atom">2</span>);</pre>
 <p>Of course, the downside of this is that it is also possible to accidentally pass the wrong number of arguments to functions that expect a fixed amount of them, like <code>alert</code>, and never be told about it.</p>
 </div>
 <ol class="footnotes"><li>
-<a name="footnote1"></a>Technically, this wouldn't have been necessary, but I suppose the designers of JavaScript felt it would clarify things if function bodies always had braces.
+<a name="footnote1"></a>
+Technically, this wouldn't have been necessary, but I suppose the designers of JavaScript felt it would clarify things if function bodies always had braces.
 </li><li>
-<a name="footnote2"></a>Technically, a pure function can not use the value of any external variables. These values might change, and this could make the function return a different value for the same arguments. In practice, the programmer may consider some variables 'constant' ― they are not expected to change ― and consider functions that use only constant variables pure. Variables that contain a function value are often good examples of constant variables.
+<a name="footnote2"></a>
+Technically, a pure function can not use the value of any external variables. These values might change, and this could make the function return a different value for the same arguments. In practice, the programmer may consider some variables 'constant' ― they are not expected to change ― and consider functions that use only constant variables pure. Variables that contain a function value are often good examples of constant variables.
 </li></ol>
 
 <div class="navigation">
-<a href="chapter2.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter4.html">Next chapter &gt;&gt;</a></div>
+<a href="chapter2.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter4.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 

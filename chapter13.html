@@ -8,8 +8,14 @@
 </head>
 <body>
 <script type="text/javascript" src="js/before.js"> </script>
-<div class="content"><script type="text/javascript">var chapterTag = 'event';</script>
-<div class="navigation"><a href="chapter12.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter14.html">Next chapter &gt;&gt;</a></div>
+<div class="content">
+<script type="text/javascript">var chapterTag = 'event';</script>
+<div class="navigation">
+<a href="chapter12.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter14.html">Next chapter &gt;&gt;</a>
+</div>
 <h1><span class="number">Chapter 13: </span>Browser Events</h1>
 <div class="block">
 <p>To add interesting functionality to a web-page, just being able to inspect or modify the document is generally not enough. We also need to be able to detect what the user is doing, and respond to it. For this, we will use a thing called <a name="key1"></a>event handlers. Pressed keys are events, mouse clicks are events, even mouse motion can be seen as a series of events. In <a href="chapter11.html">chapter 11</a>, we added an <code>onclick</code> property to a button, in order to do something when it was pressed. This is a simple event handler.</p>
@@ -17,7 +23,7 @@
 <p>It is important to realise that, even though events can fire at any time, no two handlers ever run at the same moment. If other JavaScript code is still running, the browser waits until it finishes before it calls the next handler. This also holds for code that is triggered in other ways, such as with <code>setTimeout</code>. In programmer jargon, browser JavaScript is <a name="key4"></a>single-threaded, there are never two '<a name="key5"></a>threads' running at the same time. This is, in most cases, a good thing. It is very easy to get strange results when multiple things happen at the same time.</p>
 <p>An event, when not handled, can 'bubble' through the DOM tree. What this means is that if you click on, for example, a link in a paragraph, any handlers associated with the link are called first. If there are no such handlers, or these handlers do not indicate that they have finished handling the event, the handlers for the paragraph, which is the parent of the link, are tried. After that, the handlers for <code>document.body</code> get a turn. Finally, if no JavaScript handlers have taken care of the event, the browser handles it. When clicking a link, this means that the link will be followed.</p>
 </div><hr/><div class="block">
-<p>So, as you see, events are easy. The only hard thing about them is that browsers, while all supporting more or less the same functionality, support this functionality through different interfaces. As usual, the most incompatible browser is Internet Explorer, which ignores the standard that most other browsers follow.  After that, there is Opera, which does not properly support some useful events, such as the <code>onunload</code> event which fires when leaving a page, and sometimes gives confusing information about keyboard events.</p>
+<p>So, as you see, events are easy. The only hard thing about them is that browsers, while all supporting more or less the same functionality, support this functionality through different interfaces. As usual, the most incompatible browser is Internet Explorer, which ignores the standard that most other browsers follow. After that, there is Opera, which does not properly support some useful events, such as the <code>onunload</code> event which fires when leaving a page, and sometimes gives confusing information about keyboard events.</p>
 <p>There are four event-related actions one might want to take.</p>
 <ul><li>
 Registering an event handler.
@@ -198,7 +204,7 @@ Signalling that an event has been handled.
 <p>But, when playing the game, we do not want to be looking at this textual representation. Instead, we will put a <a name="key56"></a>table into the document. I made small <a name="key57"></a>style-sheet (<a href="css/sokoban.css">sokoban.css</a>, if you are curious what it looks like) to give the cells of this table a fixed square size, and added it to the example document. Each of the cells in this table will get a background image, representing the type of the square (empty, wall, or exit). To show the location of the player and the boulders, images are added to these table cells, and moved to different cells as appropriate.</p>
 <p>It would be possible to use this table as the main representation of our data ― when we want to look whether there is a wall in a given square, we just inspect the background of the appropriate table cell, and to find the player, we just search for the image node with the correct <code>src</code> property. In some cases, this approach is practical, but for this program I chose to keep a separate data structure for the grid, because it makes things much more straightforward.</p>
 <p>This data structure is a two-dimensional grid of objects, representing the squares of the playing field. Each of the objects must store the type of background it has and whether there is a boulder or player present in that cell. It should also contain a reference to the table cell that is used to display it in the document, to make it easy to move images in and out of this table cell.</p>
-<p>That gives us two kinds of objects ― one to hold the grid of the playing field, and one to represent the individual cells in this grid.  If we want the game to also do things like moving the next level at the appropriate moment, and being able to reset the current level when you mess up, we will also need a 'controller' object, which creates or removes the field objects at the appropriate moment. For convenience, we will be using the prototype approach outlined at the end of <a href="chapter8.html">chapter 8</a>, so object types are just prototypes, and the <code>create</code> method, rather than the <code>new</code> operator, is used to make new objects.</p>
+<p>That gives us two kinds of objects ― one to hold the grid of the playing field, and one to represent the individual cells in this grid. If we want the game to also do things like moving the next level at the appropriate moment, and being able to reset the current level when you mess up, we will also need a 'controller' object, which creates or removes the field objects at the appropriate moment. For convenience, we will be using the prototype approach outlined at the end of <a href="chapter8.html">chapter 8</a>, so object types are just prototypes, and the <code>create</code> method, rather than the <code>new</code> operator, is used to make new objects.</p>
 </div><hr/><div class="block">
 <p>Let us start with the objects representing the squares of the game's field. They are responsible for setting the background of their cells correctly, and adding images as appropriate. The <code>img/sokoban/</code> directory contains a set of images, based on another ancient game, which will be used to visualise the game. For a start, the <code>Square</code> prototype could look like this.</p>
 <pre class="code"><span class="keyword">var</span> <span class="variable">Square</span> = {
@@ -242,12 +248,12 @@ Signalling that an event has been handled.
 <span class="keyword">var</span> <span class="variable">testSquare</span> = <span class="variable">Square</span>.<span class="property">create</span>(<span class="string">&quot;@&quot;</span>, <span class="variable">dom</span>(<span class="string">&quot;TD&quot;</span>));
 <span class="variable">show</span>(<span class="variable">testSquare</span>.<span class="property">hasPlayer</span>());</pre>
 <p>The <code>character</code> argument to the constructor will be used to transform characters from the level blueprints into actual <code>Square</code> objects. To set the background of the cells, style-sheet classes are used (defined in <a href="css/sokoban.css">sokoban.css</a>), which are assigned to the <code>td</code> elements' <code>className</code> property.</p>
-<p>The methods like <code>hasPlayer</code> and <code>isEmpty</code> are a way to 'isolate' the code that uses objects of this type from the internals of the objects.  They are not strictly necessary in this case, but they will make the other code look better.</p>
+<p>The methods like <code>hasPlayer</code> and <code>isEmpty</code> are a way to 'isolate' the code that uses objects of this type from the internals of the objects. They are not strictly necessary in this case, but they will make the other code look better.</p>
 </div><hr/><div class="block">
 <a name="exercise2"></a>
 <div class="exercisenum">Ex. 13.2</div>
 <div class="exercise">
-<p>Add methods <code>moveContent</code> and <code>clearContent</code> to the <code>Square</code> prototype. The first one takes another <code>Square</code> object as an argument, and moves the content of the <code>this</code> square into the argument by updating the <code>content</code> properties and moving the image node associated with this content. This will be used to move boulders and players around the grid. It may assume the square is not currently empty.  <code>clearContent</code> removes the content from the square without moving it anywhere. Note that the <code>content</code> property for empty squares contains <code>null</code>.</p>
+<p>Add methods <code>moveContent</code> and <code>clearContent</code> to the <code>Square</code> prototype. The first one takes another <code>Square</code> object as an argument, and moves the content of the <code>this</code> square into the argument by updating the <code>content</code> properties and moving the image node associated with this content. This will be used to move boulders and players around the grid. It may assume the square is not currently empty. <code>clearContent</code> removes the content from the square without moving it anywhere. Note that the <code>content</code> property for empty squares contains <code>null</code>.</p>
 <p>The <code>removeElement</code> function we defined in <a href="chapter12.html">chapter 12</a> is available in this chapter too, for your node-removing convenience. You may assume that the images are the only child nodes of the table cells, and can thus be reached through, for example, <code>this.tableCell.lastChild</code>.</p>
 </div>
 <div class="solution"><pre class="code"><span class="variable">Square</span>.<span class="property">moveContent</span> = <span class="keyword">function</span>(<span class="variabledef">target</span>) {
@@ -352,7 +358,7 @@ Signalling that an event has been handled.
     <span class="localvariable">this</span>.<span class="property">playerPos</span> = <span class="localvariable">targetPos</span>;
   }
 };</pre>
-<p>By taking care of boulders first, the move code can work the same way when the player is moving normally and when he is pushing a boulder.  Note how the square behind the boulder is found by adding the <code>direction</code> to the <code>playerPos</code> twice. Test it by moving left two squares:</p>
+<p>By taking care of boulders first, the move code can work the same way when the player is moving normally and when he is pushing a boulder. Note how the square behind the boulder is found by adding the <code>direction</code> to the <code>playerPos</code> twice. Test it by moving left two squares:</p>
 <pre class="code"><span class="variable">testField</span>.<span class="property">move</span>(<span class="keyword">new</span> <span class="variable">Point</span>(-<span class="atom">1</span>, <span class="atom">0</span>));
 <span class="variable">testField</span>.<span class="property">move</span>(<span class="keyword">new</span> <span class="variable">Point</span>(-<span class="atom">1</span>, <span class="atom">0</span>));</pre>
 <p>If that worked, we moved a boulder into a place from which we can't get it out anymore, so we'd better throw this field away.</p>
@@ -483,7 +489,7 @@ element.</p>
 });</pre>
 <p>You can type all you want, the event will only fire when you click outside of the input, press tab, or unfocus it in some other way.</p>
 <p><a name="key65"></a>Forms also have a <a name="key66"></a><code>submit</code> event, which is fired when they submit. It can be stopped to prevent the submit from taking place. This gives us a <em>much</em> better way to do the form validation we saw in the previous chapter. You just register a <code>submit</code> handler, which stops the event when the content of the form is not valid. That way, when the user does not have JavaScript enabled, the form will still work, it just won't have instant validation.</p>
-<p><a name="key67"></a><a name="key68"></a>Window objects have a <a name="key69"></a><code>load</code> event that fires when the document is fully loaded, which can be useful if your script needs to do some kind of initialisation that has to wait until the whole document is present. For example, the scripts on the pages for this book go over the current chapter to hide solutions to exercises.  You can't do that when the exercises are not loaded yet. There is also an <a name="key70"></a><code>unload</code> event, firing when the user leaves the document, but this is not properly supported by all browsers.</p>
+<p><a name="key67"></a><a name="key68"></a>Window objects have a <a name="key69"></a><code>load</code> event that fires when the document is fully loaded, which can be useful if your script needs to do some kind of initialisation that has to wait until the whole document is present. For example, the scripts on the pages for this book go over the current chapter to hide solutions to exercises. You can't do that when the exercises are not loaded yet. There is also an <a name="key70"></a><code>unload</code> event, firing when the user leaves the document, but this is not properly supported by all browsers.</p>
 <p><a name="key71"></a>Most of the time it is best to leave the laying out of a document to the browser, but there are effects that can only be produced by having a piece of JavaScript set the exact sizes of some nodes in a document. When you do this, make sure you also listen for <a name="key72"></a><code>resize</code> events on the window, and re-calculate the sizes of your element every time the window is resized.</p>
 </div><hr/><div class="block">
 <p>Finally, I have to tell you something about event handlers that you would rather not know. The Internet Explorer browser (which means, at the time of writing, the browser used by a majority of web-surfers) has a bug that causes values to not be cleaned up as normal: Even when they are no longer used, they stay in the machine's memory. This is known as a <a name="key73"></a>memory leak, and, once enough memory has been leaked, will seriously slow down a computer.</p>
@@ -509,7 +515,12 @@ element.</p>
 <p>Now the <code>element</code> variable no longer points at the DOM node, and the handler will not leak. This approach is viable, but requires the programmer to <em>really</em> pay attention.</p>
 <p>The third solution, finally, is to not worry too much about creating leaky structures, but to make sure to clean them up when you are done with them. This means unregistering any event handlers when they are no longer needed, and registering an <code>onunload</code> event to unregister the handlers that are needed until the page is unloaded. It is possible to extend an event-registering system, like our <code>addHandler</code> function, to automatically do this. When taking this approach, you must keep in mind that event handlers are not the only possible source of memory leaks ― adding properties to DOM node objects can cause similar problems.</p>
 </div>
-<div class="navigation"><a href="chapter12.html">&lt;&lt; Previous chapter</a> | <a href="contents.html">Contents</a> | <a href="index.html">Cover</a> | <a href="chapter14.html">Next chapter &gt;&gt;</a></div>
+<div class="navigation">
+<a href="chapter12.html">&lt;&lt; Previous chapter</a> | 
+<a href="contents.html">Contents</a> | 
+<a href="index.html">Cover</a> | 
+<a href="chapter14.html">Next chapter &gt;&gt;</a>
+</div>
 <div class="footer">
 © <a href="mailto:marijnh@gmail.com">Marijn Haverbeke</a> 
 (<a href="http://creativecommons.org/licenses/by/3.0/">license</a>), 
